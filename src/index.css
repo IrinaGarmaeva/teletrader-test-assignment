@@ -1,3 +1,7 @@
+@import url('./vendor/normalize.css');
+@import url('./vendor/fonts/fonts.css');
+
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -8,15 +12,26 @@ body {
   min-height: 100vh;
 }
 
+:root {
+  --color-white: #fff;
+  --color-purple: #B982FF;
+  --color-green: #0DBB7C;
+  --color-red: #FF8282;
+  --color-bg-primary: #040C18;
+  --color-bg-dark: #1A1B23;
+  --color-gray: #898CA9;
+  --gradient-text: linear-gradient(89.97deg, #AE67FA 1.84%, #F49867 102.67%);
+}
+
 .page {
-  font-family: "Arial", sans-serif;
+  font-family: "Inter", "Arial", sans-serif;
   font-weight: 400;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
-  color: #000;
+  color: var(--color-white);
   min-width: 320px;
   max-width: 1280px;
   margin: 0 auto;
@@ -24,6 +39,33 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  padding: 0 30px;
+  outline: 2px red dashed;
+}
+
+h1, h2, h3, h4, p, li {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.gradient__bg {
+  background:-moz-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  /* safari 5.1+,chrome 10+ */
+  background:-webkit-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  /* opera 11.10+ */
+  background:-o-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  /* ie 10+ */
+  background:-ms-radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
+
+  /* global 92%+ browsers support */
+  background:radial-gradient(circle at 3% 25%, rgba(0, 40, 83, 1) 0%, rgba(4, 12, 24, 1) 25%);
 }
 
 .main {
