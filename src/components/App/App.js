@@ -20,10 +20,9 @@ function App() {
   }, [])
 
   const handleLogin = () => {
-    console.log('clicked')
-    const newState = !isLoggedIn
+    const newState = !isLoggedIn;
     setIsLoggedIn(newState);
-    saveToLocalStorage('isLoggedIn', newState)
+    saveToLocalStorage('isLoggedIn', newState);
   }
 
   return (
