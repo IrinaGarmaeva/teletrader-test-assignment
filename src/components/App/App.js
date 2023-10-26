@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "../Header/Header";
+import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import Home from "../../pages/Home/Home";
 import Details from "../../pages/Details/Details";
 import Favorites from "../../pages/Favorites/Favorites";
@@ -34,7 +35,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/details/:symbol" element={<Details />} />
-            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/favorites" element={<ProtectedRoute element={<Favorites />} isLoggedIn={isLoggedIn}/>} />
             {/* <Route path="/*" element={<NotFound />} /> */}
           </Routes>
         </main>
