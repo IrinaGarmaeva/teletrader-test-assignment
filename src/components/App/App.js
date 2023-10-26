@@ -4,6 +4,7 @@ import Header from "../Header/Header";
 import Home from "../../pages/Home/Home";
 import Details from "../../pages/Details/Details";
 import Favorites from "../../pages/Favorites/Favorites";
+import NotFound from "../../pages/NotFound/NotFound";
 import Footer from "../Footer/Footer";
 import { saveToLocalStorage, getFromLocalStorage } from "../../utils/localSrorageFunctions";
 
@@ -34,6 +35,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/details" element={<Details />} />
             <Route path="/favorites" element={<Favorites />} />
+            <Route path="/*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

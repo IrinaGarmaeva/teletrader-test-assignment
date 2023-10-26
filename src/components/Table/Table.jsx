@@ -1,26 +1,25 @@
-import './Home.css';
-import Table from '../../components/Table/Table';
+import './Table.css';
 import { currencyData } from '../../utils/conts';
 
-const Home = () => {
+const Table = () => {
   return (
-    <section className="home">
-      <Table />
-      {/* <table className="table">
+    <>
+      <table className="table">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Last</th>
-            <th>Change</th>
-            <th>Change Percent</th>
-            <th>High</th>
-            <th>Low</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last</th>
+            <th scope="col">Change</th>
+            <th scope="col">Change Percent</th>
+            <th scope="col">High</th>
+            <th scope="col">Low</th>
           </tr>
           <tbody className="table__body">
             {currencyData?.map((item) => {
               return(
                 <tr key={item.id}>
-                  <td className=''>
+                  {/* <th scope="row" ></th> */}
+                  <td>
                     {item.name}
                   </td>
                   <td>{item.last}</td>
@@ -30,12 +29,11 @@ const Home = () => {
                 </tr>
               )
             })}
-
           </tbody>
         </thead>
-      </table> */}
-    </section>
+      </table>
+    </>
   )
 }
 
-export default Home
+export default Table

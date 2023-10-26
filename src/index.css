@@ -78,3 +78,13 @@ ul, ol {
 .main {
   flex: 1 1 auto;
 }
+
+.link {
+  opacity: 1;
+  transition: 0.7s ease;
+  cursor: pointer;
+}
+
+.link:hover {
+  opacity: 0.7;
+}
