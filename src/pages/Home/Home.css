@@ -1,17 +1,11 @@
 .home {
   margin: 50px 0;
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   table-layout: fixed;
   text-align: left;
 }
 
-.table {
-  width: 80%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  outline: 1px red dashed;
-}
 
 /*
 .table__body {
@@ -20,7 +14,7 @@
 }
 
 tbody tr {
-  /* border: 1px solid green; 
+  /* border: 1px solid green;
 }
 
 tbody tr td {
