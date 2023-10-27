@@ -1,7 +1,14 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import rootReducer from './reducers'; // Import your root reducer
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
+import { cryptoReducer } from './cryptoReducer';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
 
-export default store;
+const rootReducer = combineReducers({
+  symbols: cryptoReducer,
+})
+
+export const setupStore = () => {
+  return configureStore({
+    reducer: rootReducer
+  })
+}
+
