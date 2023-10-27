@@ -10,6 +10,10 @@ module.exports = function (app) {
       pathRewrite: {
         '^/bitfinex-symbols' : '/v1/symbols', // rewrite path
       },
+      onError: (err, req, res) => {
+        console.error("Proxy Error:", err);
+        res.status(500).send("Proxy Error");
+      }
     })
   );
 
@@ -21,6 +25,10 @@ module.exports = function (app) {
       ws: true, // proxy websockets
       pathRewrite: {
         '^/bitfinex-pubticker' : '/v1/pubticker', // rewrite path
+      },
+      onError: (err, req, res) => {
+        console.error("Proxy Error:", err);
+        res.status(500).send("Proxy Error");
       }
     })
   );
