@@ -1,6 +1,5 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import { cryptoReducer } from './cryptoReducer';
-
+import cryptoReducer from '../features/cryptoSlice'
 
 const rootReducer = combineReducers({
   symbols: cryptoReducer,

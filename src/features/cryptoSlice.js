@@ -27,4 +27,4 @@ export const cryptoSlice = createSlice({
   }
 })
 
-export const { getSymbolsAction } = cryptoSlice.actions
+export default cryptoSlice.reducer
