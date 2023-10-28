@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
+import io from 'socket.io-client';
 import { Routes, Route } from "react-router-dom";
+
 import Header from "../Header/Header";
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute";
 import Home from "../../pages/Home/Home";
@@ -20,6 +22,21 @@ function App() {
       setIsLoggedIn(false)
     }
   }, [])
+
+  useEffect(() => {
+    // Create a socket connection to the server
+    const socket = io('wss://api.bitfinex.com/ws/1');
+
+    // Listen for a custom event from the server
+    socket.on('subscribe', (data) => {
+      console.log('Received data from server:', data);
+    });
+
+    // Clean up the socket connection when the component unmounts
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const handleLogin = () => {
     const newState = !isLoggedIn;
