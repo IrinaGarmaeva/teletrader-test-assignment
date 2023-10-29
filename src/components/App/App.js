@@ -25,7 +25,18 @@ function App() {
 
   useEffect(() => {
     // Create a socket connection to the server
-    const socket = io('wss://api.bitfinex.com/ws/1');
+    // const socket = io('wss://api.bitfinex.com/ws/1', {
+    //   extraHeaders: {
+    //     origin: 'http://localhost:3000/'
+    //   }
+    // });
+
+//     const socket = io('ws://localhost:3000', {
+//       extraHeaders: {
+//         origin: 'ws://localhost:3000',
+//     },
+// });
+    const socket = io('ws://localhost:3000');
 
     // Listen for a custom event from the server
     socket.on('subscribe', (data) => {
