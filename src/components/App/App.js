@@ -24,19 +24,20 @@ function App() {
   }, [])
 
   useEffect(() => {
-    // Create a socket connection to the server
-    // const socket = io('wss://api.bitfinex.com/ws/1', {
-    //   extraHeaders: {
-    //     origin: 'http://localhost:3000/'
-    //   }
-    // });
+    //Create a socket connection to the server
+    const socket = io('wss://api.bitfinex.com/ws/1', {
+      extraHeaders: {
+        origin: 'http://localhost:3001/'
+      }
+    });
 
-//     const socket = io('ws://localhost:3000', {
+//     const socket = io('ws://localhost:3001', {
 //       extraHeaders: {
-//         origin: 'ws://localhost:3000',
+//         origin: 'ws://localhost:3001',
 //     },
 // });
-    const socket = io('ws://localhost:3000');
+    // const socket = io('ws://localhost:3000');
+    //const socket = io('wss://api-pub.bitfinex.com/ws/1');
 
     // Listen for a custom event from the server
     socket.on('subscribe', (data) => {

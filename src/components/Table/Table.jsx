@@ -1,6 +1,7 @@
 import './Table.css';
 import { currencyData } from '../../utils/conts';
 import { useNavigate } from 'react-router-dom';
+import { getFirst5Symbols } from '../../utils/api';
 
 const Table = () => {
   const navigate = useNavigate();
@@ -8,6 +9,14 @@ const Table = () => {
   function goToDetailsPage(item) {
     navigate(`/details/${item.name}`);
   }
+
+  function getSymbols() {
+    console.log('Request to get 5 symbols')
+    getFirst5Symbols();
+  }
+
+  getSymbols()
+
 
   return (
     <>
