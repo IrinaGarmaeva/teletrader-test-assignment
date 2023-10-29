@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Crypto Currency Monitoring App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Crypto Currency Monitoring App is a SPA test assignment project. The purpose of this test is to help TeleTrader ascertain the qualiﬁcation and skill level of the prospective candidate applying for the Junior React Developer position.
+The project itself is related to TeleTrader's core business, which revolves around developing applications for the financial industry.
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+This is a SPA built with React and created using the Create React App (CRA) method. The application allows users to monitor the latest data for the top 5 cryptocurrencies. It provides real-time updates for cryptocurrency pairs from Bitfnex using WebSockets. Users can also view detailed information for individual currency pairs, add or remove pairs to/from their favorites list, and access a dedicated "Favorites" page that displays their selected pairs.
 
-### `npm start`
+## Links
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Deploy: [https://teletrader-test-assignment-5pleferg9-irinagarmaeva.vercel.app/](https://teletrader-test-assignment-5pleferg9-irinagarmaeva.vercel.app/) <br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Technologies
+* HTML5
+* BEM
+* CSS
+* Flexbox
+* React JS (Functional components, hooks)
+* Redux Toolkit
+* Webpack
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Functionality
 
-### `npm run build`
+Login functionality is simulated. After clicking the login button users are logged in forever and state should be persisted upon app close. There’s no logout functionality.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+**Home Page (`/`)**: The home page displays information for the top 5 cryptocurrency pairs, including:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ - Cryptocurrency name
+ - Last price
+ - Daily change
+ - Daily change percent
+ - Daily high price
+ - Daily low price
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+This data is updated in real-time via WebSocket connection to the Bitfnex API.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Details Page (`/details/:symbol`)**: Users can click on a cryptocurrency pair's name on the home page to navigate to the details page. The details page provides information for the selected currency pair, including:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+ - Symbol (Cryptocurrency pair name)
+ - Last price
+ - Daily high price
+ - Daily low price
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Unlike the home page, this data doesn't have real-time updating.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+**Favorites**: Logged-in users can add or remove cryptocurrency pairs to/from their favorites list. The state of logged-in status and favorite pairs is stored in local storage.
 
-## Learn More
+**Favorites Page (`/favorites`)**: The favorites page displays cryptocurrency pairs that the logged-in user has added to their favorites list. This page also receives real-time updates via WebSocket connection.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## How to install and run locally
 
-### Code Splitting
+Clone repository:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  `git clone https://github.com/IrinaGarmaeva/teletrader-test-assignment`
 
-### Analyzing the Bundle Size
+Install dependencies:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+  `npm install`
 
-### Making a Progressive Web App
+Run app:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  `npm run start`
 
-### Advanced Configuration
+Build app(production):
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  `npm run build`
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
