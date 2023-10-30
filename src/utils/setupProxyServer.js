@@ -9,9 +9,9 @@ console.log('Proxy server is starting...');
 app.use(
   '/bitfinex-symbols',
   createProxyMiddleware({
+    // target: 'https://api.bitfinex.com/v1/symbols',
     target: 'https://api.bitfinex.com',
     changeOrigin: true,
-    // ws: true, // proxy websockets
     pathRewrite: {
       '^/bitfinex-symbols': '/v1/symbols', // rewrite path
     },
@@ -19,6 +19,23 @@ app.use(
       console.error('Proxy Error:', err);
       res.status(500).send('Proxy Error');
     },
+    logger: console,
+  })
+);
+
+app.use(
+  "/bitfinex-pubticker/*",
+  createProxyMiddleware({
+    target: "https://api.bitfinex.com",
+    changeOrigin: true,
+    //ws: true, // proxy websockets
+    pathRewrite: {
+      '^/bitfinex-pubticker' : '/v1/pubticker', // rewrite path
+    },
+    onError: (err, req, res) => {
+      console.error("Proxy Error:", err);
+      res.status(500).send("Proxy Error");
+    }
   })
 );
 
@@ -26,6 +43,8 @@ app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
 
+
+/*
 module.exports = function (app) {
   app.use(
     "/bitfinex-symbols",
@@ -59,7 +78,7 @@ module.exports = function (app) {
     })
   );
 };
-
+*/
 
 // const http = require('http');
 // const httpProxy = require('http-proxy');

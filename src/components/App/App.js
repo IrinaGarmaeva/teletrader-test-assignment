@@ -23,6 +23,8 @@ function App() {
     }
   }, [])
 
+
+/*
   useEffect(() => {
     //Create a socket connection to the server
     const socket = io('wss://api.bitfinex.com/ws/1', {
@@ -49,6 +51,7 @@ function App() {
       socket.disconnect();
     };
   }, []);
+*/
 
   const handleLogin = () => {
     const newState = !isLoggedIn;

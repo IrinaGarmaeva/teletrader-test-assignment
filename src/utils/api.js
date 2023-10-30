@@ -1,10 +1,14 @@
 import axios from 'axios';
 
-
 export const getFirst5Symbols = async () => {
   try {
-    const response = await axios.get('/bitfinex-symbols')
-    // const response = await axios.get('https://api.bitfinex.com/v1/symbols') если использовать эту ссылку, ошибка корс
+    const response = await axios.get('/bitfinex-symbols', {
+      headers: {
+        accept: 'application/json'
+      },
+      withCredentials: true,
+    });
+
     if(response.status === 200){
       const symbolList = await response.data.slice(0, 5)
       console.log(symbolList)
@@ -42,3 +46,5 @@ export const getFirst5Symbols = async () => {
 //     }
 //   });
 // };
+
+
