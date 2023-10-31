@@ -3,19 +3,19 @@ import { currencyData } from '../../utils/conts';
 import { useNavigate } from 'react-router-dom';
 import { getFirst5Symbols } from '../../utils/api';
 
-const Table = () => {
+const Table = ({symbols}) => {
   const navigate = useNavigate();
 
   function goToDetailsPage(item) {
     navigate(`/details/${item.name}`);
   }
 
-  function getSymbols() {
-    console.log('Request to get 5 symbols')
-    getFirst5Symbols();
-  }
+  // function getSymbols() {
+  //   console.log('Request to get 5 symbols')
+  //   getFirst5Symbols();
+  // }
 
-  getSymbols()
+  // getSymbols()
 
 
   return (
@@ -32,7 +32,7 @@ const Table = () => {
           </tr>
           </thead>
           <tbody className="table__body">
-            {currencyData?.map((item) => {
+            {/* {currencyData?.map((item) => {
               return(
                 <tr key={item.id}>
                   <td onClick={() => goToDetailsPage(item)} className='table__item'>
@@ -43,6 +43,20 @@ const Table = () => {
                   <td>{item.changePercent}</td>
                   <td>{item.high}</td>
                   <td>{item.low}</td>
+                </tr>
+              )
+            })} */}
+            {symbols?.map((item) => {
+              return(
+                <tr key={item}>
+                  <td onClick={() => goToDetailsPage(item)} className='table__item'>
+                    {item}
+                  </td>
+                  <td>{item}</td>
+                  <td>{item}</td>
+                  <td>{item}</td>
+                  <td>{item}</td>
+                  <td>{item}</td>
                 </tr>
               )
             })}

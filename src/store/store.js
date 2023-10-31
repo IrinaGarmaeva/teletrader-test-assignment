@@ -1,13 +1,11 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import cryptoReducer from '../features/cryptoSlice'
+import { configureStore } from '@reduxjs/toolkit'
+import symbolsReducer from '../features/cryptoSlice'
 
-const rootReducer = combineReducers({
-  symbols: cryptoReducer,
+
+
+export const store = configureStore({
+  reducer: {
+    symbols: symbolsReducer,
+  }
 })
-
-export const setupStore = () => {
-  return configureStore({
-    reducer: rootReducer
-  })
-}
 

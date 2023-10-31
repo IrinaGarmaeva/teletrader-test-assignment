@@ -10,7 +10,7 @@ export const getFirst5Symbols = async () => {
     });
 
     if(response.status === 200){
-      const symbolList = await response.data.slice(0, 5)
+      const symbolList = await response.data.slice(0, 5).map(symbol => symbol.toUpperCase())
       console.log(symbolList)
       return symbolList
     } else {
@@ -21,30 +21,14 @@ export const getFirst5Symbols = async () => {
   }
 }
 
-// import io from 'socket.io-client';
+export const getSymbolData = async () => {
+  try {
 
-// export const getFirst5Symbols = () => {
-//   return new Promise((resolve, reject) => {
-//     try {
-//       //const socket = io('ws://localhost:3000'); // Connect to your WebSocket proxy server
+  } catch (error) {
+    console.error(`Error: ${error.message}`)
+  }
+}
 
-//       // Listen for the 'subscribe' event from the server
-//       socket.on('subscribe', (data) => {
-//         console.log('Received data from server:', data);
-//         const first5Symbols = data.slice(0, 5);
-//         resolve(first5Symbols); // Resolve with the first 5 symbols
-//       });
 
-//       // Handle errors
-//       socket.on('error', (error) => {
-//         console.error('Socket error:', error);
-//         reject(error);
-//       });
-//     } catch (error) {
-//       console.error(`Error: ${error.message}`);
-//       reject(error);
-//     }
-//   });
-// };
 
 
