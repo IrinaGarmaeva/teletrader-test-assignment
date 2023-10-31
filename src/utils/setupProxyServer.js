@@ -26,11 +26,13 @@ app.use(
 app.use(
   "/bitfinex-pubticker/*",
   createProxyMiddleware({
-    target: "https://api.bitfinex.com",
+    //target: "https://api.bitfinex.com",
+    target: "https://api-pub.bitfinex.com",
     changeOrigin: true,
-    //ws: true, // proxy websockets
+    ws: true, // proxy websockets
     pathRewrite: {
-      '^/bitfinex-pubticker' : '/v1/pubticker', // rewrite path
+      //'^/bitfinex-pubticker' : '/v1/pubticker', // rewrite path
+      '^/bitfinex-pubticker' : '/v2/tickers' //rewrite path
     },
     onError: (err, req, res) => {
       console.error("Proxy Error:", err);

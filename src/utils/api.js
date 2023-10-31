@@ -21,9 +21,14 @@ export const getFirst5Symbols = async () => {
   }
 }
 
-export const getSymbolData = async () => {
+export const getSymbolData = async (symbol) => {
   try {
-
+    const response = await axios.get(`/bitfinex-pubticker/${symbol}`)
+    if (response.status === 200) {
+      return response
+    } else {
+      console.error('Failed to fetch data: ', response.status, response.statusText)
+    }
   } catch (error) {
     console.error(`Error: ${error.message}`)
   }

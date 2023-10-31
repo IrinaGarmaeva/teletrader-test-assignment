@@ -1,22 +1,12 @@
 import './Table.css';
-import { currencyData } from '../../utils/conts';
 import { useNavigate } from 'react-router-dom';
-import { getFirst5Symbols } from '../../utils/api';
 
-const Table = ({symbols}) => {
+const Table = ({symbols, symbolsData}) => {
   const navigate = useNavigate();
 
   function goToDetailsPage(item) {
     navigate(`/details/${item.name}`);
   }
-
-  // function getSymbols() {
-  //   console.log('Request to get 5 symbols')
-  //   getFirst5Symbols();
-  // }
-
-  // getSymbols()
-
 
   return (
     <>
@@ -52,11 +42,22 @@ const Table = ({symbols}) => {
                   <td onClick={() => goToDetailsPage(item)} className='table__item'>
                     {item}
                   </td>
+                  {symbolsData?.map((item) => {
+                    return(
+                      <>
+                      <td>{item[6]}</td>
+                      <td>{item[4]}</td>
+                      <td>{item[5]}</td>
+                      <td>{item[8]}</td>
+                      <td>{item[9]}</td>
+                      </>
+                    )
+                  })}
+                  {/* <td>{item}</td>
                   <td>{item}</td>
                   <td>{item}</td>
                   <td>{item}</td>
-                  <td>{item}</td>
-                  <td>{item}</td>
+                  <td>{item}</td> */}
                 </tr>
               )
             })}
