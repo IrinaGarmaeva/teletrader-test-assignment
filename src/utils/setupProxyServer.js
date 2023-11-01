@@ -7,13 +7,13 @@ console.log('Proxy server is starting...');
 
 // Configure proxy middleware
 app.use(
-  '/bitfinex-symbols',
+  '/symbols',
   createProxyMiddleware({
     // target: 'https://api.bitfinex.com/v1/symbols',
     target: 'https://api.bitfinex.com',
     changeOrigin: true,
     pathRewrite: {
-      '^/bitfinex-symbols': '/v1/symbols', // rewrite path
+      '^/symbols': '/v1/symbols', // rewrite path
     },
     onError: (err, req, res) => {
       console.error('Proxy Error:', err);
@@ -24,7 +24,7 @@ app.use(
 );
 
 app.use(
-  "/bitfinex-pubticker/*",
+  "/ticker-by/*",
   createProxyMiddleware({
     //target: "https://api.bitfinex.com",
     target: "https://api-pub.bitfinex.com",
@@ -32,7 +32,7 @@ app.use(
     ws: true, // proxy websockets
     pathRewrite: {
       //'^/bitfinex-pubticker' : '/v1/pubticker', // rewrite path
-      '^/bitfinex-pubticker' : '/v2/tickers' //rewrite path
+      '^/ticker-by' : '/v2/tickers' //rewrite path
     },
     onError: (err, req, res) => {
       console.error("Proxy Error:", err);

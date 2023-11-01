@@ -1,13 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
-import symbolsReducer from '../features/symbolsSlice'
-import tickersReducer from '../features/tickersSlice'
+import cryptoPairNamesReducer from './cryptoPairNames/cryptoPairNamesSlice'
+import tickerDataReducer from './tickerData/tickerDataSlice'
 
 
 
 export const store = configureStore({
   reducer: {
-    symbols: symbolsReducer,
-    tickers: tickersReducer
+    cryptoPairNames: cryptoPairNamesReducer,
+    tickerData: tickerDataReducer
   }
 })
 

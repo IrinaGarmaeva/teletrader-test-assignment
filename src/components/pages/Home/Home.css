@@ -1,0 +1,16 @@
+.home {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  table-layout: fixed;
+
+}
+
+.home__wrapper {
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-items: center;
+}

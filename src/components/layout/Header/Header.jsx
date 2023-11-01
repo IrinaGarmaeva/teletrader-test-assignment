@@ -1,4 +1,4 @@
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../../design-system/Navbar/Navbar';
 import './Header.css';
 
 const Header = ({handleLogin, isLoggedIn}) => {

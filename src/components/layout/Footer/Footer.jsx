@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { year, PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../utils/conts";
-import arrow from "../../images/arrow.svg";
+import { year, PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../utils/conts";
+import arrow from "../../../assets/icons/arrow.svg";
 import "./Footer.css";
 
 const Footer = () => {

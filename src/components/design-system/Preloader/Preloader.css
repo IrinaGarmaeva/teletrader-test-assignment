@@ -1,11 +1,5 @@
-.preloader__container {
-  position: fixed;
-  top: calc(30% - 20px);
-  left: calc(50% - 20px);
-}
-
 .preloader {
-  border: 6px solid #f3f3f3;
+  border: 6px solid var(--color-white);
   border-top: 6px solid var(--color-green);
   border-radius: 50%;
   width: 40px;
