@@ -1,9 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getTickers = createAsyncThunk('tickers/getTickers', async (symbol) => {
+export const getTickers = createAsyncThunk('tickers/getTickers', async () => {
   try {
-    const response = await axios.get(`/ticker-by/${symbol}`)
+    const response = await axios.get(`/tickers`, {
+      headers: {
+        accept: 'application/json'
+      },
+      withCredentials: true,
+    })
     return response.data
   } catch (error) {
     console.error(`Error getting tickers: ${error.message}`)
@@ -36,7 +41,7 @@ export const tickersSlice = createSlice({
   }
 })
 
-export const selectTickers = (state) => state.tickers.tickers;
+export const selectAllTickers = (state) => state.tickers.tickers;
 export const selectTickersErrorText = (state) => state.tickers.errorText;
 export const selectTickersLoadingStatus = (state) => state.tickers.isLoading;
 

@@ -23,13 +23,15 @@ app.use(
 );
 
 app.use(
-  "/ticker-by/*",
+  // "/ticker-by/*",
+  "/tickers",
   createProxyMiddleware({
     target: "https://api-pub.bitfinex.com",
     changeOrigin: true,
-    ws: true,
+    //ws: true,
     pathRewrite: {
-      '^/ticker-by' : '/v2/tickers',
+      // '^/ticker-by' : '/v2/tickers',
+      '^/tickers' : '/v2/tickers?symbols=ALL',
     },
     onError: (err, req, res) => {
       console.error("Proxy Error:", err);

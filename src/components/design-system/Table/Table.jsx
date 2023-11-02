@@ -4,32 +4,18 @@ import { useNavigate } from "react-router-dom";
 const Table = ({ firstFiveCryptoPairNames, tickers }) => {
   const navigate = useNavigate();
 
-  function goToDetailsPage(item) {
-    navigate(`/details/${item.name}`);
+  function goToDetailsPage(cryptoPairName) {
+    navigate(`/details/${cryptoPairName}`);
   }
 
-  function getTickersToDisplay(tickers) {
-    const tickersToKeep = [6, 4, 5, 8, 9];
-    const tickerKeys = [
-      "lastPrice",
-      "dailyChange",
-      "dailyChangePercentage",
-      "dailyHigh",
-      "dailyLow",
-    ];
-    const ticker = {};
+  const getTickersValueToDisplay = (tickers) => {
+    const tickerIndexesToDisplay = [0, 7, 5, 6, 9, 10];
+    return tickers.map((ticker) =>
+      tickerIndexesToDisplay.map((index) => ticker[index])
+    );
+  };
 
-    tickersToKeep.forEach((index, i) => {
-      const data = tickers[index];
-      const name = tickerKeys[i];
-
-      ticker[name] = data;
-    });
-
-    return ticker;
-  }
-
-  const tickersToDisplay = getTickersToDisplay(tickers);
+  const tickersToDisplay = getTickersValueToDisplay(tickers);
 
   return (
     <>
@@ -45,7 +31,8 @@ const Table = ({ firstFiveCryptoPairNames, tickers }) => {
           </tr>
         </thead>
         <tbody className="table__body">
-          {firstFiveCryptoPairNames?.map((cryptoPairName) => {
+          {tickersToDisplay.map((tickerData, index) => {
+            const cryptoPairName = tickerData[0].slice(1);
             return (
               <tr key={cryptoPairName}>
                 <td
@@ -54,8 +41,8 @@ const Table = ({ firstFiveCryptoPairNames, tickers }) => {
                 >
                   {cryptoPairName}
                 </td>
-                {Object.keys(tickersToDisplay).map((key) => (
-                  <td key={key}>{tickersToDisplay[key]}</td>
+                {tickerData.slice(1).map((value, i) => (
+                  <td key={i}>{value}</td>
                 ))}
               </tr>
             );

@@ -9,7 +9,7 @@ import {
   getCryptoPairNames,
 } from "../../../store/cryptoPairNames/cryptoPairNamesSlice";
 import {
-  selectTickers,
+  selectAllTickers,
   getTickers,
 } from "../../../store/tickers/tickersSlice";
 
@@ -23,12 +23,17 @@ const Home = () => {
   const cryptoPairNameLoadingStatus = useSelector(selectCryptoPairNamesLoadingStatus);
   const cryptoPairNamesErrorText = useSelector(selectCryptoPairNamesErrorText);
 
-  const tickers = useSelector(selectTickers);
+  const allTickers = useSelector(selectAllTickers);
 
   useEffect(() => {
     dispatch(getCryptoPairNames());
-    return firstFiveCryptoPairNames.forEach((cryptoPairName) => dispatch(getTickers(cryptoPairName)));
+    dispatch(getTickers())
+    // return firstFiveCryptoPairNames.forEach((cryptoPairName) => dispatch(getTickers(cryptoPairName)));
   }, []);
+
+  const tickers = firstFiveCryptoPairNames.map((cryptoPairName) => {
+    return allTickers.find((ticker) => ticker[0] === `t${cryptoPairName}`);
+  });
 
   useEffect(() => {
     if (!firstFiveCryptoPairNames.length) {
