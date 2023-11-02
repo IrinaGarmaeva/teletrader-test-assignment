@@ -23,9 +23,8 @@ function App() {
   }, [])
 
   const handleLogin = () => {
-    const newState = true
-    setIsLoggedIn(newState)
-    saveToLocalStorage('isLoggedIn', newState);
+    setIsLoggedIn(true)
+    saveToLocalStorage('isLoggedIn', true);
   }
 
   return (

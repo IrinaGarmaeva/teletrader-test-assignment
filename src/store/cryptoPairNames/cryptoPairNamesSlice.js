@@ -42,7 +42,7 @@ export const cryptoPairNamesSlice = createSlice({
 })
 
 export const selectCryptoPairNames = (state) => state.cryptoPairNames.cryptoPairNames;
-export const getCryptoPairNamesLoadingStatus = (state) => state.cryptoPairNames.isLoading;
-export const getCryptoPairNamesErrorText = (state) => state.cryptoPairNames.errorText;
+export const selectCryptoPairNamesLoadingStatus = (state) => state.cryptoPairNames.isLoading;
+export const selectCryptoPairNamesErrorText = (state) => state.cryptoPairNames.errorText;
 
 export default cryptoPairNamesSlice.reducer

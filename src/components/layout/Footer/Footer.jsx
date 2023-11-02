@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { currentYear, PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/conts";
-import arrow from "../../../assets/icons/arrow.svg";
+import { PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/validationMessages";
+import ArrowRightIcon from "../../../assets/icons/arrow.svg";
 import "./Footer.css";
 
 const Footer = () => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
+
+  const currentYear = new Date().getFullYear();
 
   const handleChangeEmail = (e) => {
     setEmail(e.target.value);
@@ -56,7 +58,7 @@ const Footer = () => {
           noValidate
         >
           <img
-            src={arrow}
+            src={ArrowRightIcon}
             alt="arrow icon"
             className="footer__arrow-icon"
             onClick={handleSubmit}

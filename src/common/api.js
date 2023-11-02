@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const getFirst5Symbols = async () => {
+export const getFirstFiveSymbols = async () => {
   try {
     const response = await axios.get('/symbols', {
       headers: {

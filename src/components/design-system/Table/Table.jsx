@@ -8,6 +8,23 @@ const Table = ({ firstFiveCryptoPairNames, tickers }) => {
     navigate(`/details/${item.name}`);
   }
 
+  function getTickersToDisplay(tickersArray) {
+    const tickersToKeep = [6, 4, 5, 8, 9];
+    const tickerNames = ["lastPrice", "dailyChange", "dailyChangePercentage", "dailyHigh", "dailyLow"];
+    const tickersObject = {};
+
+    tickersToKeep.forEach((index, i) => {
+      const data = tickersArray[index];
+      const name = tickerNames[i];
+
+      tickersObject[name] = data;
+    });
+
+    return tickersObject;
+  };
+
+  const tickersToDisplay = getTickersToDisplay(tickers)
+
   return (
     <>
       <table className="table">
@@ -28,14 +45,14 @@ const Table = ({ firstFiveCryptoPairNames, tickers }) => {
                   <td onClick={() => goToDetailsPage(cryptoPairName)} className='table__item'>
                     {cryptoPairName}
                   </td>
-                  {tickers?.map((cryptoPair) => {
+                  {tickersToDisplay?.map((ticker) => {
                     return(
                       <>
-                      <td>{cryptoPair[6]}</td>
-                      <td>{cryptoPair[4]}</td>
-                      <td>{cryptoPair[5]}</td>
-                      <td>{cryptoPair[8]}</td>
-                      <td>{cryptoPair[9]}</td>
+                      <td>{ticker.lastPrice}</td>
+                      <td>{ticker.dailyChange}</td>
+                      <td>{ticker.dailyChangePercentage}</td>
+                      <td>{ticker.dailyHigh}</td>
+                      <td>{ticker.dailyLow}</td>
                       </>
                     )
                   })}

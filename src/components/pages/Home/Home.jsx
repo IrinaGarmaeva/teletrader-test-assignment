@@ -4,8 +4,8 @@ import WebSocket from "websocket";
 
 import {
   selectCryptoPairNames,
-  getCryptoPairNamesLoadingStatus,
-  getCryptoPairNamesErrorText,
+  selectCryptoPairNamesLoadingStatus,
+  selectCryptoPairNamesErrorText,
   getCryptoPairNames,
 } from "../../../store/cryptoPairNames/cryptoPairNamesSlice";
 import {
@@ -20,23 +20,18 @@ import "./Home.css";
 const Home = () => {
   const dispatch = useDispatch();
   const firstFiveCryptoPairNames = useSelector(selectCryptoPairNames).slice(0, 5).map(cryptoPairName => cryptoPairName.toUpperCase());
-  const cryptoPairNameLoadingStatus = useSelector(getCryptoPairNamesLoadingStatus);
-  const cryptoPairNamesErrorText = useSelector(getCryptoPairNamesErrorText);
+  const cryptoPairNameLoadingStatus = useSelector(selectCryptoPairNamesLoadingStatus);
+  const cryptoPairNamesErrorText = useSelector(selectCryptoPairNamesErrorText);
 
   const tickers = useSelector(selectTickers);
 
   useEffect(() => {
     dispatch(getCryptoPairNames());
-  }, [dispatch]);
-
-  useEffect(() => {
-    console.log(firstFiveCryptoPairNames);
     return firstFiveCryptoPairNames.forEach((cryptoPairName) => dispatch(getTickers(cryptoPairName)));
   }, []);
 
   useEffect(() => {
-    console.log(firstFiveCryptoPairNames);
-    if (!firstFiveCryptoPairNames || firstFiveCryptoPairNames.length === 0) {
+    if (!firstFiveCryptoPairNames.length) {
       return;
     }
 
@@ -55,7 +50,6 @@ const Home = () => {
 
     w.onmessage = (message) => {
       const data = JSON.parse(message.data);
-      console.log(data);
       //console.log('Received message from server:', message.data);
     };
 
