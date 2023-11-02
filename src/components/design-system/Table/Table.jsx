@@ -10,7 +10,7 @@ const Table = ({ firstFiveCryptoPairNames, tickers }) => {
 
   const getTickersValueToDisplay = (tickers) => {
     const tickerIndexesToDisplay = [0, 7, 5, 6, 9, 10];
-    return tickers.map((ticker) =>
+    return tickers?.map((ticker) =>
       tickerIndexesToDisplay.map((index) => ticker[index])
     );
   };
