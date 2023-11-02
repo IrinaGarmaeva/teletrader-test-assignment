@@ -9,7 +9,7 @@ const initialState = {
 
 export const getCryptoPairNames = createAsyncThunk('cryptoPairNames/getCryptoPairNames', async () => {
   try {
-    const response = await axios.get('/symbols', {
+    const response = await axios.get('/cryptoPairNames', {
       headers: {
         accept: 'application/json'
       },

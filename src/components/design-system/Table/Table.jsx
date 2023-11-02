@@ -8,25 +8,25 @@ const Table = ({ firstFiveCryptoPairNames, tickers }) => {
     navigate(`/details/${item.name}`);
   }
 
-  function getTickersToDisplay(tickersArray) {
+  function getTickersToDisplay(tickers) {
     const tickersToKeep = [6, 4, 5, 8, 9];
-    const tickerNames = [
+    const tickerKeys = [
       "lastPrice",
       "dailyChange",
       "dailyChangePercentage",
       "dailyHigh",
       "dailyLow",
     ];
-    const tickersObject = {};
+    const ticker = {};
 
     tickersToKeep.forEach((index, i) => {
-      const data = tickersArray[index];
-      const name = tickerNames[i];
+      const data = tickers[index];
+      const name = tickerKeys[i];
 
-      tickersObject[name] = data;
+      ticker[name] = data;
     });
 
-    return tickersObject;
+    return ticker;
   }
 
   const tickersToDisplay = getTickersToDisplay(tickers);

@@ -7,12 +7,12 @@ console.log('Proxy server is starting...');
 
 
 app.use(
-  '/symbols',
+  '/cryptoPairNames',
   createProxyMiddleware({
     target: 'https://api.bitfinex.com',
     changeOrigin: true,
     pathRewrite: {
-      '^/symbols': '/v1/symbols',
+      '^/cryptoPairNames': '/v1/symbols',
     },
     onError: (err, req, res) => {
       console.error('Proxy Error:', err);
