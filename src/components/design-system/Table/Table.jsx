@@ -1,7 +1,7 @@
 import './Table.css';
 import { useNavigate } from 'react-router-dom';
 
-const Table = ({ firstFiveCryptoPairNames, cryptoPairData }) => {
+const Table = ({ firstFiveCryptoPairNames, tickers }) => {
   const navigate = useNavigate();
 
   function goToDetailsPage(item) {
@@ -28,7 +28,7 @@ const Table = ({ firstFiveCryptoPairNames, cryptoPairData }) => {
                   <td onClick={() => goToDetailsPage(cryptoPairName)} className='table__item'>
                     {cryptoPairName}
                   </td>
-                  {cryptoPairData?.map((cryptoPair) => {
+                  {tickers?.map((cryptoPair) => {
                     return(
                       <>
                       <td>{cryptoPair[6]}</td>

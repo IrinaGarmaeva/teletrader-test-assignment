@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from 'react-redux';
 import { Routes, Route } from "react-router-dom";
 
 import Header from './components/layout/Header/Header'
@@ -9,7 +8,7 @@ import Details from "./components/pages/Details/Details";
 import Favorites from "./components/pages/Favorites/Favorites";
 import NotFound from "./components/pages/NotFound/NotFound";
 import Footer from "./components/layout/Footer/Footer";
-import { saveToLocalStorage, getFromLocalStorage } from "./utils/localSrorageFunctions";
+import { saveToLocalStorage, getFromLocalStorage } from "./common/localSrorageFunctions";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -24,8 +23,8 @@ function App() {
   }, [])
 
   const handleLogin = () => {
-    const newState = !isLoggedIn;
-    setIsLoggedIn(newState);
+    const newState = true
+    setIsLoggedIn(newState)
     saveToLocalStorage('isLoggedIn', newState);
   }
 

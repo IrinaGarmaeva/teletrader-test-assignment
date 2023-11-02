@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { year, PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../utils/conts";
+import { currentYear, PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/conts";
 import arrow from "../../../assets/icons/arrow.svg";
 import "./Footer.css";
 
@@ -73,7 +73,7 @@ const Footer = () => {
           <span className="footer__email-error">{error}</span>
         </form>
         <p className="footer__copyright">
-          &copy; {year} Teletrader. All rights reserved
+          &copy; {currentYear} Teletrader. All rights reserved
         </p>
       </div>
       <div className="footer__nav">

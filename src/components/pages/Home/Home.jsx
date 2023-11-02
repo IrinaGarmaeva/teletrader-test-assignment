@@ -5,13 +5,13 @@ import WebSocket from "websocket";
 import {
   selectCryptoPairNames,
   getCryptoPairNamesLoadingStatus,
-  getCryptoPairNamesError,
+  getCryptoPairNamesErrorText,
   getCryptoPairNames,
 } from "../../../store/cryptoPairNames/cryptoPairNamesSlice";
 import {
-  selectTickerData,
+  selectTickers,
   getTickers,
-} from "../../../store/tickerData/tickerDataSlice";
+} from "../../../store/tickers/tickersSlice";
 
 import Table from "../../design-system/Table/Table";
 import Preloader from "../../design-system/Preloader/Preloader";
@@ -21,9 +21,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const firstFiveCryptoPairNames = useSelector(selectCryptoPairNames).slice(0, 5).map(cryptoPairName => cryptoPairName.toUpperCase());
   const cryptoPairNameLoadingStatus = useSelector(getCryptoPairNamesLoadingStatus);
-  const cryptoPairNamesError = useSelector(getCryptoPairNamesError);
+  const cryptoPairNamesErrorText = useSelector(getCryptoPairNamesErrorText);
 
-  const tickerData = useSelector(selectTickerData);
+  const tickers = useSelector(selectTickers);
 
   useEffect(() => {
     dispatch(getCryptoPairNames());
@@ -74,7 +74,7 @@ const Home = () => {
         {cryptoPairNameLoadingStatus ? (
           <Preloader />
         ) : (
-          <Table firstFiveCryptoPairNames={firstFiveCryptoPairNames} cryptoPairData={tickerData} />
+          <Table firstFiveCryptoPairNames={firstFiveCryptoPairNames} tickers={tickers} />
         )}
       </div>
     </section>

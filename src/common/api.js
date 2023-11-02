@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const getFirst5Symbols = async () => {
   try {
-    const response = await axios.get('/bitfinex-symbols', {
+    const response = await axios.get('/symbols', {
       headers: {
         accept: 'application/json'
       },
@@ -10,7 +10,7 @@ export const getFirst5Symbols = async () => {
     });
 
     if(response.status === 200){
-      const symbolList = await response.data.slice(0, 5).map(symbol => symbol.toUpperCase())
+      const symbolList = response.data.slice(0, 5).map(symbol => symbol.toUpperCase())
       console.log(symbolList)
       return symbolList
     } else {
@@ -21,9 +21,9 @@ export const getFirst5Symbols = async () => {
   }
 }
 
-export const getSymbolData = async (symbol) => {
+export const getTickers = async (symbol) => {
   try {
-    const response = await axios.get(`/bitfinex-pubticker/${symbol}`)
+    const response = await axios.get(`/ticker-by/${symbol}`)
     if (response.status === 200) {
       return response
     } else {

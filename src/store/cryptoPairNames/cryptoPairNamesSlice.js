@@ -4,7 +4,7 @@ import axios from "axios";
 const initialState = {
   cryptoPairNames: [],
   isLoading: false,
-  error: null,
+  errorText: null,
 }
 
 export const getCryptoPairNames = createAsyncThunk('cryptoPairNames/getCryptoPairNames', async () => {
@@ -31,18 +31,18 @@ export const cryptoPairNamesSlice = createSlice({
       })
       .addCase(getCryptoPairNames.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = '';
+        state.errorText = '';
         state.cryptoPairNames = action.payload;
       })
       .addCase(getCryptoPairNames.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.error.message;
+        state.errorText = action.error.message;
       })
   }
 })
 
 export const selectCryptoPairNames = (state) => state.cryptoPairNames.cryptoPairNames;
 export const getCryptoPairNamesLoadingStatus = (state) => state.cryptoPairNames.isLoading;
-export const getCryptoPairNamesError = (state) => state.cryptoPairNames.error;
+export const getCryptoPairNamesErrorText = (state) => state.cryptoPairNames.errorText;
 
 export default cryptoPairNamesSlice.reducer
