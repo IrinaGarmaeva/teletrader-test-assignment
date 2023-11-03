@@ -61,6 +61,10 @@ Install dependencies:
 
   `npm install`
 
+Run proxy server:
+
+  `node src/common/setupProxyServer.js`
+
 Run app:
 
   `npm run start`
