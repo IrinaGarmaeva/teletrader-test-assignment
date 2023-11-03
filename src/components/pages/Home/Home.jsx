@@ -54,6 +54,14 @@ const Home = () => {
 
     w.onmessage = (message) => {
       const data = JSON.parse(message.data);
+      console.log(data)
+
+      if(data?.event === 'subscribed') {
+
+      } else {
+
+      }
+
     };
 
     w.onclose = () => {
