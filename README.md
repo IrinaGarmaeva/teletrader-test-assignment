@@ -63,7 +63,7 @@ Install dependencies:
 
 Run proxy server:
 
-  `node src/common/setupProxyServer.js`
+  `node proxy-server/setupProxyServer.js`
 
 Run app:
 

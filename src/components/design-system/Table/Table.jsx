@@ -1,12 +1,9 @@
 import "./Table.css";
 import { useNavigate } from "react-router-dom";
+import { formatTickers } from "../../../common/tickerFormatter";
 
-const Table = ({ firstFiveCryptoPairNames, tickers }) => {
+const Table = ({ selectedTickers }) => {
   const navigate = useNavigate();
-
-  function goToDetailsPage(cryptoPairName) {
-    navigate(`/details/${cryptoPairName}`);
-  }
 
   const getTickersValueToDisplay = (tickers) => {
     const tickerIndexesToDisplay = [0, 7, 5, 6, 9, 10];
@@ -15,7 +12,8 @@ const Table = ({ firstFiveCryptoPairNames, tickers }) => {
     );
   };
 
-  const tickersToDisplay = getTickersValueToDisplay(tickers);
+  const tickersToDisplay = getTickersValueToDisplay(selectedTickers);
+  const formattedTickersToDisplay = formatTickers(tickersToDisplay);
 
   return (
     <>
@@ -31,17 +29,17 @@ const Table = ({ firstFiveCryptoPairNames, tickers }) => {
           </tr>
         </thead>
         <tbody className="table__body">
-          {tickersToDisplay.map((tickerData, index) => {
-            const cryptoPairName = tickerData[0].slice(1);
+          {formattedTickersToDisplay.map((ticker) => {
+            const cryptoPairName = ticker[0].slice(1);
             return (
               <tr key={cryptoPairName}>
                 <td
-                  onClick={() => goToDetailsPage(cryptoPairName)}
+                  onClick={() => navigate(`/details/${cryptoPairName}`)}
                   className="table__item"
                 >
                   {cryptoPairName}
                 </td>
-                {tickerData.slice(1).map((value, i) => (
+                {ticker.slice(1).map((value, i) => (
                   <td key={i}>{value}</td>
                 ))}
               </tr>

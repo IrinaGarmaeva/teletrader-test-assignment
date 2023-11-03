@@ -28,10 +28,9 @@ const Home = () => {
   useEffect(() => {
     dispatch(getCryptoPairNames());
     dispatch(getTickers())
-    // return firstFiveCryptoPairNames.forEach((cryptoPairName) => dispatch(getTickers(cryptoPairName)));
   }, []);
 
-  const tickers = firstFiveCryptoPairNames.map((cryptoPairName) => {
+  const selectedTickers = firstFiveCryptoPairNames.map((cryptoPairName) => {
     return allTickers.find((ticker) => ticker[0] === `t${cryptoPairName}`);
   });
 
@@ -55,7 +54,6 @@ const Home = () => {
 
     w.onmessage = (message) => {
       const data = JSON.parse(message.data);
-      //console.log('Received message from server:', message.data);
     };
 
     w.onclose = () => {
@@ -73,7 +71,7 @@ const Home = () => {
         {cryptoPairNameLoadingStatus ? (
           <Preloader />
         ) : (
-          <Table firstFiveCryptoPairNames={firstFiveCryptoPairNames} tickers={tickers} />
+          <Table selectedTickers={selectedTickers} />
         )}
       </div>
     </section>

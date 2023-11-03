@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/validationMessages";
+import { PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/emailValidationConstants";
 import ArrowRightIcon from "../../../assets/icons/arrow.svg";
 import "./Footer.css";
 
