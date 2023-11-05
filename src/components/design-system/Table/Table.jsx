@@ -6,7 +6,9 @@ const Table = ({ selectedTickers }) => {
   const navigate = useNavigate();
 
   const getTickersValueToDisplay = (tickers) => {
-    const tickerIndexesToDisplay = [0, 7, 5, 6, 9, 10];
+    console.log(tickers)
+    //const tickerIndexesToDisplay = [0, 7, 5, 6, 9, 10];
+    const tickerIndexesToDisplay = [0, 1, 8, 6, 7, 10, 11]; // 0 - это chanId
     return tickers?.map((ticker) =>
       tickerIndexesToDisplay.map((index) => ticker[index])
     );
@@ -32,7 +34,7 @@ const Table = ({ selectedTickers }) => {
           {formattedTickersToDisplay.map((ticker) => {
             const cryptoPairName = ticker[0].slice(1);
             return (
-              <tr key={cryptoPairName}>
+              <tr key={ticker[0]}>
                 <td
                   onClick={() => navigate(`/details/${cryptoPairName}`)}
                   className="table__item"

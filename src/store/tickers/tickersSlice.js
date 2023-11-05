@@ -24,6 +24,28 @@ const initialState = {
 export const tickersSlice = createSlice({
   name: 'tickers',
   initialState,
+  reducers: {
+    addChanIdToTicker: (state, action) => {
+      const { symbol, chanId } = action.payload;
+      const tickerIndex = state.tickers.findIndex((ticker) => ticker[0] === symbol);
+
+      if (tickerIndex !== -1) {
+        const ticker = state.tickers[tickerIndex];
+        const updatedTicker = [chanId, ...ticker];
+        state.tickers[tickerIndex] = updatedTicker;
+      }
+    },
+    updateTicker: (state, action) => {
+      const { chanId, data } = action.payload;
+      const tickerToUpdate = state.tickers.find((ticker) => ticker[0] === chanId);
+
+      if (tickerToUpdate) {
+        state.tickers = state.tickers.map((ticker) =>
+          ticker[0] === chanId ? [chanId, ...data] : ticker
+        );
+      }
+    }
+  },
   extraReducers(builder){
     builder
       .addCase(getTickers.fulfilled, (state, action) => {
@@ -39,10 +61,11 @@ export const tickersSlice = createSlice({
         state.isLoading = false;
       })
   }
-})
+});
 
 export const selectAllTickers = (state) => state.tickers.tickers;
 export const selectTickersErrorText = (state) => state.tickers.errorText;
 export const selectTickersLoadingStatus = (state) => state.tickers.isLoading;
+export const { addChanIdToTicker, updateTicker } = tickersSlice.actions
 
 export default tickersSlice.reducer

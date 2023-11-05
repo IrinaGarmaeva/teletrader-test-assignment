@@ -46,3 +46,4 @@ export const selectCryptoPairNamesLoadingStatus = (state) => state.cryptoPairNam
 export const selectCryptoPairNamesErrorText = (state) => state.cryptoPairNames.errorText;
 
 export default cryptoPairNamesSlice.reducer
+
