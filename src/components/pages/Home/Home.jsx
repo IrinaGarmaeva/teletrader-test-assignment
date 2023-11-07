@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import WebSocket from "websocket";
 
 import {
@@ -11,8 +11,6 @@ import {
 import {
   selectAllTickers,
   getTickers,
-  addChanIdToTicker,
-  updateTicker
 } from "../../../store/tickers/tickersSlice";
 
 import Table from "../../design-system/Table/Table";
@@ -20,6 +18,9 @@ import Preloader from "../../design-system/Preloader/Preloader";
 import "./Home.css";
 
 const Home = () => {
+  const [tickersToDisplay, setTickersToDisplay] = useState([]);
+  const [selectedTickers, setSelectedTickers] = useState([]);
+
   const dispatch = useDispatch();
   const firstFiveCryptoPairNames = useSelector(selectCryptoPairNames)
     .slice(0, 5)
@@ -31,10 +32,13 @@ const Home = () => {
 
   const allTickers = useSelector(selectAllTickers);
 
+
+
   useEffect(() => {
     dispatch(getCryptoPairNames());
     dispatch(getTickers());
   }, []);
+
 
   useEffect(() => {
     if (!firstFiveCryptoPairNames.length) {
@@ -60,17 +64,36 @@ const Home = () => {
       if (data?.event === "subscribed") {
         const symbol = data.symbol;
         const chanId = data.chanId;
-        dispatch(addChanIdToTicker({ symbol, chanId }));
+
+        //dispatch(addChanIdToTicker({ symbol, chanId }));
+        const tickerIndex = selectedTickers.findIndex((ticker) => ticker[0] === symbol);
+
+        if(tickerIndex !== -1) {
+          setSelectedTickers((prevTickers) => {
+            const updatedTickers = [...prevTickers];
+            const ticker = updatedTickers[tickerIndex];
+            const updatedTicker = [chanId, ...ticker];
+            updatedTickers[tickerIndex] = updatedTicker;
+            return updatedTickers;
+          });
+        }
       } else {
         if(data[1] === 'hb') {
           return
         }
         if(Array.isArray(data)) {
-          const updatedTicker = {
-            chanId: data[0],
-            data: data[1]
-          }
-          dispatch(updateTicker(updatedTicker))
+          const chanId = data[0]
+          const updatedTicker = data[1]
+
+          //dispatch(updateTicker(updatedTicker))
+          const updatedTickers = selectedTickers.map((ticker) => {
+            if (ticker[0] === chanId) {
+              return [chanId, ...updatedTicker];
+            }
+            return ticker;
+          });
+
+          setSelectedTickers(updatedTickers);
         }
       }
     };
@@ -81,11 +104,26 @@ const Home = () => {
     return () => {
       w.onclose();
     };
-  }, [firstFiveCryptoPairNames]);
+  }, []);
 
-  const selectedTickers = firstFiveCryptoPairNames.map((cryptoPairName) => {
-    return allTickers.find((ticker) => ticker[0] === `t${cryptoPairName}`);
-  });
+  const getTickersToDisplay = (tickers) => {
+    //const tickerIndexesToDisplay = [0, 7, 5, 6, 9, 10];
+    const tickerIndexesToDisplay = [0, 1, 8, 6, 7, 10, 11]; // 0 - это chanId
+    return tickers?.map((ticker) =>
+      tickerIndexesToDisplay.map((index) => ticker[index])
+    );
+  };
+
+  const getSelectedTickers = () => {
+    return firstFiveCryptoPairNames.map((cryptoPairName) => {
+      return allTickers.find((ticker) => ticker[0] === `t${cryptoPairName}`);
+    });
+  }
+
+  useEffect(() => {
+    setSelectedTickers(getSelectedTickers())
+    setTickersToDisplay(getTickersToDisplay(selectedTickers));
+  }, [selectedTickers]);
 
   return (
     <section className="home">
@@ -93,7 +131,7 @@ const Home = () => {
         {cryptoPairNameLoadingStatus ? (
           <Preloader />
         ) : (
-          <Table selectedTickers={selectedTickers} />
+          <Table selectedTickers={tickersToDisplay} />
         )}
       </div>
     </section>

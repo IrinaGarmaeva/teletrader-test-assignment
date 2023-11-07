@@ -25,26 +25,26 @@ export const tickersSlice = createSlice({
   name: 'tickers',
   initialState,
   reducers: {
-    addChanIdToTicker: (state, action) => {
-      const { symbol, chanId } = action.payload;
-      const tickerIndex = state.tickers.findIndex((ticker) => ticker[0] === symbol);
+    // addChanIdToTicker: (state, action) => {
+    //   const { symbol, chanId } = action.payload;
+    //   const tickerIndex = state.tickers.findIndex((ticker) => ticker[0] === symbol);
 
-      if (tickerIndex !== -1) {
-        const ticker = state.tickers[tickerIndex];
-        const updatedTicker = [chanId, ...ticker];
-        state.tickers[tickerIndex] = updatedTicker;
-      }
-    },
-    updateTicker: (state, action) => {
-      const { chanId, data } = action.payload;
-      const tickerToUpdate = state.tickers.find((ticker) => ticker[0] === chanId);
+    //   if (tickerIndex !== -1) {
+    //     const ticker = state.tickers[tickerIndex];
+    //     const updatedTicker = [chanId, ...ticker];
+    //     state.tickers[tickerIndex] = updatedTicker;
+    //   }
+    // },
+    // updateTicker: (state, action) => {
+    //   const { chanId, data } = action.payload;
+    //   const tickerToUpdate = state.tickers.find((ticker) => ticker[0] === chanId);
 
-      if (tickerToUpdate) {
-        state.tickers = state.tickers.map((ticker) =>
-          ticker[0] === chanId ? [chanId, ...data] : ticker
-        );
-      }
-    }
+    //   if (tickerToUpdate) {
+    //     state.tickers = state.tickers.map((ticker) =>
+    //       ticker[0] === chanId ? [chanId, ...data] : ticker
+    //     );
+    //   }
+    // }
   },
   extraReducers(builder){
     builder
