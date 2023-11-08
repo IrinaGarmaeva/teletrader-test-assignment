@@ -16,7 +16,12 @@ export const getTickers = createAsyncThunk('tickers/getTickers', async () => {
 })
 
 const initialState = {
-    tickers: [],
+  tickers: [],
+    // tickers: {
+    //   chanId: null,
+    //   symbol: '',
+    //   values: []
+    // },
     isLoading: false,
     errorText: null,
 }
