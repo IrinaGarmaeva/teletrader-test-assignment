@@ -13,5 +13,5 @@ export function formatTickerElement(tickerElement) {
 }
 
 export function formatTickers(tickers) {
-  return tickers?.map((ticker) => ticker.map((item) => formatTickerElement(item)));
+  return tickers?.map((ticker) => ticker.values.map((item) => formatTickerElement(item)));
 }

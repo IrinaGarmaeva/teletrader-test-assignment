@@ -40,7 +40,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0 30px;
-  outline: 2px red dashed;
+  /* outline: 2px red dashed; */
 }
 
 h1, h2, h3, h4, p, li {
@@ -76,6 +76,7 @@ ul, ol {
 }
 
 .main {
+  display: flex;
   flex: 1 1 auto;
 }
 
