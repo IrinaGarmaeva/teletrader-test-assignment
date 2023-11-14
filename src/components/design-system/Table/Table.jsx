@@ -1,12 +1,9 @@
 import "./Table.css";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectTickers } from "../../../store/tickers/tickersSlice";
 import { formatTickers } from "../../../common/tickerFormatter";
 
-const Table = () => {
+const Table = ({tickers}) => {
   const navigate = useNavigate();
-  const tickers = useSelector(selectTickers);
 
   const getTickersValuesToDisplay = (tickers) => {
     const tickersWithSelectedValues = tickers.map((ticker) => {

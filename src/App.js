@@ -4,7 +4,7 @@ import Header from './components/layout/Header/Header'
 import { ProtectedRoute } from "./components/layout/ProtectedRoute/ProtectedRoute";
 import Home from "./components/pages/Home/Home";
 import Details from "./components/pages/Details/Details";
-import Favorites from "./components/pages/Favorites/Favorites";
+import Favourites from "./components/pages/Favourites/Favourites";
 import NotFound from "./components/pages/NotFound/NotFound";
 import Footer from "./components/layout/Footer/Footer";
 import { saveToLocalStorage, getFromLocalStorage } from "./common/localSrorageFunctions";
@@ -34,7 +34,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/details/:symbol" element={<Details isLoggedIn={isLoggedIn}/>} />
-            <Route path="/favorites" element={<ProtectedRoute element={<Favorites />} isLoggedIn={isLoggedIn}/>} />
+            <Route path="/favorites" element={<ProtectedRoute element={<Favourites />} isLoggedIn={isLoggedIn}/>} />
             {/* <Route path="/*" element={<NotFound />} /> */}
           </Routes>
         </main>

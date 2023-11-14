@@ -14,15 +14,15 @@ const Details = ({isLoggedIn}) => {
 
   const handleGetTicker = async () => {
     const response = await getTicker(symbol)
-    const data = await response.data
+    const data = response.data
     setTickerData(data)
   }
 
   const addToFavorites = () => {
     setIsFavorite(true)
     const newFavorites = [...favoriteList, symbol]
-    saveToLocalStorage('symbol', newFavorites)
-    const dataFromLocalStorage =  getFromLocalStorage('symbol')
+    saveToLocalStorage('favouriteSymbols', newFavorites)
+    const dataFromLocalStorage =  getFromLocalStorage('favouriteSymbols')
     setFavoriteList(dataFromLocalStorage)
   }
 
@@ -31,7 +31,7 @@ const Details = ({isLoggedIn}) => {
     const symbolToRemoveFromFavorites = symbol
 
     if (favoriteList.length) {
-      saveToLocalStorage('symbol', favoriteList.filter((symbol) => symbol !== symbolToRemoveFromFavorites))
+      saveToLocalStorage('favouriteSymbols', favoriteList.filter((symbol) => symbol !== symbolToRemoveFromFavorites))
       setFavoriteList(favoriteList.filter((item) => item !== symbolToRemoveFromFavorites))
     }
   }

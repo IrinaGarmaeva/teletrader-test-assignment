@@ -40,22 +40,12 @@ app.use(
   createProxyMiddleware({
     target: "https://api.bitfinex.com",
     changeOrigin: true,
-    // pathRewrite: (path, req) => {
-    //   const symbol = req.params[0];
-    //   console.log(symbol)
-    //   // return path.replace('/pubticker', `/v1/ticker/${symbol}`)
-    //   //const modifiedPath = path.replace('/pubticker', `/v1/ticker/${symbol}`);
-    //   const modifiedPath = path.replace('/pubticker', `/v1/ticker`);
-    //   console.log('Modified Path:', modifiedPath);
-    //   return modifiedPath;
-    // },
     pathRewrite: {
       '/pubticker' : '/v1/pubticker'
     },
     logger: console,
   })
 );
-
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');

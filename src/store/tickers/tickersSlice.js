@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     tickers: [],
+    favouriteTickers: [],
     isLoading: false,
     errorText: null,
 }

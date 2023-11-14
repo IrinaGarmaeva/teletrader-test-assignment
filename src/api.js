@@ -16,7 +16,6 @@ export const getCryptoPairNames = async () => {
 
 export const getTicker = async (symbol) => {
   try {
-    // const response = await axios.get(`/ticker/${symbol}`, {
       const response = await axios.get(`/pubticker/${symbol}`, {
       headers: {
         accept: 'application/json'

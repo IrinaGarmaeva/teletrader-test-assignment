@@ -11,7 +11,7 @@ import Preloader from "../../design-system/Preloader/Preloader";
 import "./Home.css";
 
 const Home = () => {
-  const [tickersToDisplay, setTickersToDisplay] = useState([])
+  const [tickersToDisplay, setTickersToDisplay] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch();
   const tickers = useSelector(selectTickers);
@@ -35,6 +35,7 @@ const Home = () => {
     };
 
     w.onmessage = (message) => {
+      setIsLoading(true)
       const data = JSON.parse(message.data);
 
       if (data?.event === "subscribed") {
@@ -60,6 +61,7 @@ const Home = () => {
       }
       setIsLoading(false)
     };
+
     w.onclose = () => {
       console.log("WebSocket connection closed");
     };
@@ -69,11 +71,14 @@ const Home = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setTickersToDisplay(tickers);
+  }, [tickers]);
 
   return (
     <section className="home">
       <div className="home__wrapper">
-        {isLoading ? <Preloader /> : <Table />}
+        {isLoading ? <Preloader /> : <Table tickers={tickersToDisplay}/>}
       </div>
     </section>
   );
