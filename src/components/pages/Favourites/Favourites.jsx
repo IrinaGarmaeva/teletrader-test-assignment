@@ -1,36 +1,45 @@
-import { useEffect, useState } from "react"
-import { useSelector, useDispatch } from "react-redux";
-import { selectTickers,  } from "../../../store/tickers/tickersSlice";
-import { getFromLocalStorage } from "../../../common/localSrorageFunctions"
-import Table from "../../design-system/Table/Table"
-import './Favourites.css'
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {
+  selectFavouriteTickers,
+  setFavouriteTickers,
+} from "../../../store/tickers/tickersSlice";
+import { getFromLocalStorage } from "../../../common/localSrorageFunctions";
+import Preloader from "../../design-system/Preloader/Preloader";
+import Table from "../../design-system/Table/Table";
+import "./Favourites.css";
+import useWebSocket from "../../../hooks/useWebSocket";
+import Button from "../../design-system/Button/Button";
 
 const Favourites = () => {
-  const [favouriteSymbols, setFavouriteSymbols] = useState([])
-  const [favouriteTickers, setFavouriteTickers] = useState([])
+  const navigate = useNavigate();
+  const favouriteTickers = useSelector(selectFavouriteTickers);
 
-  const dispatch = useDispatch();
-  const tickers = useSelector(selectTickers)
+  const favoriteListFromLocalStorage = getFromLocalStorage("favouriteSymbols");
 
-  const findTickersByFavoritePairs = (tickers, favouriteSymbols) => {
-    const foundTickers = tickers.filter(ticker => favouriteSymbols.includes(ticker.pair));
-    return foundTickers;
-  };
-
-  useEffect(() => {
-    const favoriteListFromLocalStorage = getFromLocalStorage('favouriteSymbols')
-    if(favoriteListFromLocalStorage){
-      setFavouriteSymbols(favoriteListFromLocalStorage)
-
-      setFavouriteTickers(findTickersByFavoritePairs(tickers, favouriteSymbols))
-    }
-  }, [])
+  const { tickersToDisplay, isLoading } = useWebSocket({
+    tickers: favouriteTickers,
+    cryptoPairNames: favoriteListFromLocalStorage,
+    setTickers: setFavouriteTickers,
+  });
+  const hasNoFavoriteSymbols = !favoriteListFromLocalStorage || !favoriteListFromLocalStorage.length;
 
   return (
     <section className="favorites">
-      <Table tickers={favouriteTickers}/>
+      {hasNoFavoriteSymbols ? (
+        <>
+          <h2 className="favourites__title">
+            You haven't added any symbols to Favourites
+          </h2>
+          <Button className={"favourites__button-back"} type={'button'} onClick={() => navigate(-1)} text={"Back"}/>
+        </>
+      ) : isLoading ? (
+        <Preloader />
+      ) : (
+        <Table tickers={tickersToDisplay} />
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default Favourites
+export default Favourites;

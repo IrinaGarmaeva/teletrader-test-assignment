@@ -12,7 +12,7 @@ const Navbar = ({ handleLogin, isLoggedIn }) => {
       </Link>
       {isLoggedIn ? (
         <Link to="/favorites" className={`nav__link ${location.pathname === '/favorites' ? 'nav__link_active' : ''}`}>
-          Favorites
+          Favourites
         </Link>
       ) : (
         <Button

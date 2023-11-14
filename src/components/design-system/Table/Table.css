@@ -5,6 +5,9 @@
   border-collapse: collapse;
 }
 
+tr {
+  border-bottom: 1px solid var(--color-gray);
+}
 
 th, td {
   font-size: 16px;
@@ -16,6 +19,7 @@ th, td {
 
 th {
   font-weight: 600;
+
 }
 
 .table__item {

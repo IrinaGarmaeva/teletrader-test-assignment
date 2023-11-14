@@ -3,4 +3,31 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.favourites__title {
+  font-size: 28px;
+  font-weight: 500;
+  color: var(--color-white)
+}
+
+.favourites__button-back {
+  margin-top: 20px;
+  border-radius: 10px;
+  color: var(--color-white);
+  font-weight: 500;
+  border: 1px solid var(--color-purple);
+  background: transparent;
+  padding: 6px 15px;
+  align-self: flex-start;
+  transition: 0.7s ease;
+  align-self: center;
+}
+
+.favourites__button-back:hover {
+  /* background: var(--color-purple);
+  border: 1px solid var(--color-white);
+  color: var(--color-bg-primary); */
+  transform: scale(1.1);
 }

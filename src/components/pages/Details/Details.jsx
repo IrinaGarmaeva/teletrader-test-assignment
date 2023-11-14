@@ -37,7 +37,7 @@ const Details = ({isLoggedIn}) => {
   }
 
   useEffect(() => {
-    const favoriteListFromLocalStorage = getFromLocalStorage('symbol')
+    const favoriteListFromLocalStorage = getFromLocalStorage('favouriteSymbols')
     if(favoriteListFromLocalStorage?.includes(symbol)) {
       setIsFavorite(true)
     }
