@@ -1,7 +1,11 @@
+import Table from "../../design-system/Table/Table"
+import './Favorites.css'
 
 const Favorites = () => {
   return (
-    <div>Favorites</div>
+    <section className="favorites">
+      {/* <Table /> */}
+    </section>
   )
 }
 

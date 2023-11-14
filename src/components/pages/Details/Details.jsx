@@ -1,8 +1,49 @@
 import { useParams } from 'react-router-dom'
+import { getTicker } from '../../../api'
 import './Details.css'
+import { useState, useEffect } from 'react'
+import { saveToLocalStorage, getFromLocalStorage } from '../../../common/localSrorageFunctions'
+import Button from '../../design-system/Button/Button'
 
-const Details = () => {
+const Details = ({isLoggedIn}) => {
+  const [tickerData, setTickerData] = useState();
+  const [favoriteList, setFavoriteList] = useState([]);
+  const [isFavorite, setIsFavorite] = useState(false);
+
   const { symbol } = useParams()
+
+  const handleGetTicker = async () => {
+    const response = await getTicker(symbol)
+    const data = await response.data
+    setTickerData(data)
+  }
+
+  const addToFavorites = () => {
+    setIsFavorite(true)
+    const newFavorites = [...favoriteList, symbol]
+    saveToLocalStorage('symbol', newFavorites)
+    const dataFromLocalStorage =  getFromLocalStorage('symbol')
+    setFavoriteList(dataFromLocalStorage)
+  }
+
+  const removeFromFavorites = () => {
+    setIsFavorite(false)
+    const symbolToRemoveFromFavorites = symbol
+
+    if (favoriteList.length) {
+      saveToLocalStorage('symbol', favoriteList.filter((symbol) => symbol !== symbolToRemoveFromFavorites))
+      setFavoriteList(favoriteList.filter((item) => item !== symbolToRemoveFromFavorites))
+    }
+  }
+
+  useEffect(() => {
+    const favoriteListFromLocalStorage = getFromLocalStorage('symbol')
+    if(favoriteListFromLocalStorage?.includes(symbol)) {
+      setIsFavorite(true)
+    }
+    setFavoriteList(favoriteListFromLocalStorage || [])
+    handleGetTicker()
+  }, [])
 
   return (
     <section className='details'>
@@ -18,12 +59,14 @@ const Details = () => {
         <tbody>
           <tr>
           <td>{symbol}</td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td>{tickerData?.last_price}</td>
+          <td>{tickerData?.high}</td>
+          <td>{tickerData?.low}</td>
           </tr>
         </tbody>
       </table>
+    {isLoggedIn && !isFavorite && <Button className={'details__button'} type={"button"} text={"Add to favorites"} onClick={addToFavorites} />}
+    {isLoggedIn && isFavorite && <Button className={'details__button'} type={"button"} text={"Remove from favorites"} onClick={removeFromFavorites} />}
     </section>
   )
 }

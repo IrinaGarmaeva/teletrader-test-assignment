@@ -11,6 +11,7 @@ import Preloader from "../../design-system/Preloader/Preloader";
 import "./Home.css";
 
 const Home = () => {
+  const [tickersToDisplay, setTickersToDisplay] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch();
   const tickers = useSelector(selectTickers);
