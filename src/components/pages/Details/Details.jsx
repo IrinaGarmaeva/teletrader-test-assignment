@@ -49,7 +49,7 @@ const Details = () => {
 
   return (
     <section className='details'>
-      <table>
+      <table className='details__table'>
         <thead>
           <tr>
             <th scope="col">Symbol</th>

@@ -5,27 +5,42 @@ The project itself is related to TeleTrader's core business, which revolves arou
 
 ## Description
 
-This is a SPA built with React and created using the Create React App (CRA) method. The application allows users to monitor the latest data for the top 5 cryptocurrencies. It provides real-time updates for cryptocurrency pairs from Bitfnex using WebSockets. Users can also view detailed information for individual currency pairs, add or remove pairs to/from their favorites list, and access a dedicated "Favorites" page that displays their selected pairs.
+This is a SPA built with React, Redux and [Bitfinex API](https://docs.bitfinex.com/docs). The application allows users to monitor the latest data for the top 5 cryptocurrencies. It provides real-time updates for cryptocurrency pairs from Bitfnex using WebSockets. Users can also view detailed information for individual currency pairs, add or remove pairs to/from their favorites list, and access a dedicated "Favorites" page that displays their selected pairs.
 
 ## Links
 
 Deploy: [https://teletrader-test-assignment-5pleferg9-irinagarmaeva.vercel.app/](https://teletrader-test-assignment-5pleferg9-irinagarmaeva.vercel.app/) <br>
 
 ## Technologies
-* HTML5
-* BEM
-* CSS
-* Flexbox
 * React JS (Functional components, hooks)
 * Redux Toolkit
+* WebSockets
 * Webpack
+* HTML, BEM, CSS, Flexbox
 
+## About The Project
+**Home Page**
+<img src="./src/assets/images/homePage.jpg">
+<details><summary><b>Show all</b></summary>
+<b>Details Page for authorized users</b>
+<img src="./src/assets/images/detailsPageForLoggedUser.jpg">
+<b>Details Page for unauthorized users</b>
+<img src="./src/assets/images/detailsPageForUnauthorizedUsers.jpg">
+<b>Favourites Page</b>
+<img src="./src/assets/images/favouritesPage.jpg">
+<p><b>Live email validation</b></p>
+<img src="./src/assets/images/emailValidation.jpg" width="700" height="400">
+
+</details>
 
 ## Functionality
 
-Login functionality is simulated. After clicking the login button users are logged in forever and state should be persisted upon app close. There’s no logout functionality.
+### Login Simulation
+Login functionality is simulated. After clicking the login button users are logged in forever and state should be persisted upon app close. There’s no logout functionality. The state of logged-in status is stored via local storage and react context.
 
-**Home Page (`/`)**: The home page displays information for the top 5 cryptocurrency pairs, including:
+
+### Home Page (`/`)
+The home page displays information for the top 5 cryptocurrency pairs, including:
 
  - Cryptocurrency name
  - Last price
@@ -36,19 +51,29 @@ Login functionality is simulated. After clicking the login button users are logg
 
 This data is updated in real-time via WebSocket connection to the Bitfnex API.
 
-
-**Details Page (`/details/:symbol`)**: Users can click on a cryptocurrency pair's name on the home page to navigate to the details page. The details page provides information for the selected currency pair, including:
+### Details Page (`/details/:symbol`)
+Users can click on a cryptocurrency pair's name on the home page to navigate to the details page. The details page provides information for the selected currency pair, including:
 
  - Symbol (Cryptocurrency pair name)
  - Last price
  - Daily high price
  - Daily low price
 
-Unlike the home page, this data doesn't have real-time updating.
+This data doesn't update in real-time.
 
-**Favorites**: Logged-in users can add or remove cryptocurrency pairs to/from their favorites list. The state of logged-in status and favorite pairs is stored in local storage.
+### Favorites (`/favourites`)
+Logged-in users can manage their favorite cryptocurrency pairs by adding or removing pairs from their list. The state of favorite pairs is stored in Redux store, symbols (crypto pair names) are stored in local storage. This data should be persisted upon app close. This page also receives real-time updates via WebSocket connection.
 
-**Favorites Page (`/favorites`)**: The favorites page displays cryptocurrency pairs that the logged-in user has added to their favorites list. This page also receives real-time updates via WebSocket connection.
+### Subscribe Form
+A subscribe form is available in the footer where users can input their email address to subscribe for news updates. Live validation of the email is implemented, and upon form submission, users receive a notification using window.alert().
+
+### Additional Notes
+**Context and Custom Hooks**: Utilized AuthContext and useWebSocket custom hook to manage user authentication and WebSocket connections for real-time data updates. The useWebSocket hook is extensively used in the Home and Favourites components to subscribe to WebSocket data and manage the state accordingly.
+
+**Redux Implementation**: Implemented global state management using Redux Toolkit. The app utilizes Redux slices (tickersSlice) to manage cryptocurrency data across components. Sslice contains logic for managing changes in the state based on various actions triggered by WebSocket updates and user interactions.
+
+**Proxy Server**: Implemented a proxy server to circumvent CORS issues when fetching data from [Bitfinex API](https://docs.bitfinex.com/docs).
+
 
 
 ## How to install and run locally

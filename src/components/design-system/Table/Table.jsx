@@ -24,7 +24,7 @@ const Table = ({tickers}) => {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">Name</th>
+            <th  className="table__item-name" scope="col">Name</th>
             <th scope="col">Last</th>
             <th scope="col">Change</th>
             <th scope="col">Change Percent</th>

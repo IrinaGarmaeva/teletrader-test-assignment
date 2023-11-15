@@ -1,16 +1,19 @@
 .home {
-  margin: auto;
+  margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  table-layout: fixed;
-
+  width: 100%;
 }
 
 .home__wrapper {
   margin: 50px 0;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   flex-wrap: nowrap;
   align-items: center;
+  overflow: auto;
+  position: relative;
+  box-sizing: border-box;
+  max-width: 100%;
 }

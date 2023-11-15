@@ -4,19 +4,25 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: auto;
+  position: relative;
+  width: 100%;
 }
 
-table {
+.details__table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }
 
 th, td {
   font-size: 16px;
   font-weight: 500;
-  padding: 14px;
-  text-align: left;
+  padding: 14px 5px;
+  text-align: center;
   text-wrap: nowrap;
 }
 
@@ -26,6 +32,7 @@ th {
 
 .details__button {
   margin-top: 20px;
+  margin-left: 5px;
   border-radius: 10px;
   color: var(--color-white);
   font-weight: 500;
@@ -37,8 +44,42 @@ th {
 }
 
 .details__button:hover {
-  /* background: var(--color-purple);
-  border: 1px solid var(--color-white);
-  color: var(--color-bg-primary) */
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
+
+@media (max-width: 850px) {
+  .details__table {
+    table-layout: auto;
+    vertical-align: top;
+    max-width: 100%;
+  }
+
+  th,
+  td {
+    font-size: 13px;
+  }
+}
+@media (max-width: 650px) {
+  td {
+    font-size: 11px;
+    font-weight: 400;
+  }
+
+  th {
+    font-size: 11px;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 500px) {
+  .details__table {
+    max-width: 100%;
+  }
+
+  .details__button{
+    padding: 4px 12px;
+    font-size: 13px;
+  }
+}
+
+
