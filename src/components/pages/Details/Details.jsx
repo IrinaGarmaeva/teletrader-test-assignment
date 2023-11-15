@@ -1,55 +1,62 @@
-import { useParams } from 'react-router-dom'
-import { getTicker } from '../../../api'
-import './Details.css'
-import { useState, useEffect } from 'react'
-import { saveToLocalStorage, getFromLocalStorage } from '../../../common/localSrorageFunctions'
-import Button from '../../design-system/Button/Button'
-import { useAuth } from '../../../context/AuthContext'
+import { useParams } from "react-router-dom";
+import { getTicker } from "../../../api";
+import "./Details.css";
+import { useState, useEffect } from "react";
+import {
+  saveToLocalStorage,
+  getFromLocalStorage,
+} from "../../../common/localSrorageFunctions";
+import Button from "../../design-system/Button/Button";
+import { useAuth } from "../../../context/AuthContext";
 
 const Details = () => {
-  const [tickerData, setTickerData] = useState();
+  const [ticker, setTicker] = useState();
   const [favoriteList, setFavoriteList] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
   const { isLoggedIn } = useAuth();
-  const { symbol } = useParams()
+  const { symbol } = useParams();
 
   const handleGetTicker = async () => {
-    const response = await getTicker(symbol)
-    const data = response.data
-    setTickerData(data)
-  }
+    const response = await getTicker(symbol);
+    const ticker = response.data;
+    setTicker(ticker);
+  };
 
-  const addToFavorites = () => {
-    setIsFavorite(true)
-    const newFavorites = [...favoriteList, symbol]
-    saveToLocalStorage('favouriteSymbols', newFavorites)
-    const dataFromLocalStorage =  getFromLocalStorage('favouriteSymbols')
-    setFavoriteList(dataFromLocalStorage)
-  }
+  const addToFavorites = (symbol) => {
+    setIsFavorite(true);
+    const newFavoriteList = [...favoriteList, symbol];
+    saveToLocalStorage("favouriteSymbols", newFavoriteList);
+    const favouriteSymbolsFromLocalStorage =
+      getFromLocalStorage("favouriteSymbols");
+    setFavoriteList(favouriteSymbolsFromLocalStorage);
+  };
 
-  const removeFromFavorites = () => {
-    setIsFavorite(false)
-    const symbolToRemoveFromFavorites = symbol
+  const removeFromFavorites = (symbol) => {
+    setIsFavorite(false);
 
     if (favoriteList.length) {
-      saveToLocalStorage('favouriteSymbols', favoriteList.filter((symbol) => symbol !== symbolToRemoveFromFavorites))
-      setFavoriteList(favoriteList.filter((item) => item !== symbolToRemoveFromFavorites))
+      saveToLocalStorage(
+        "favouriteSymbols",
+        favoriteList.filter((el) => el !== symbol)
+      );
+      setFavoriteList(favoriteList.filter((el) => el !== symbol));
     }
-  }
+  };
 
   useEffect(() => {
-    const favoriteListFromLocalStorage = getFromLocalStorage('favouriteSymbols')
-    if(favoriteListFromLocalStorage?.includes(symbol)) {
-      setIsFavorite(true)
+    const favoriteListFromLocalStorage =
+      getFromLocalStorage("favouriteSymbols");
+    if (favoriteListFromLocalStorage?.includes(symbol)) {
+      setIsFavorite(true);
     }
-    setFavoriteList(favoriteListFromLocalStorage || [])
-    handleGetTicker()
-  }, [])
+    setFavoriteList(favoriteListFromLocalStorage || []);
+    handleGetTicker();
+  }, []);
 
   return (
-    <section className='details'>
-      <table className='details__table'>
+    <section className="details">
+      <table className="details__table">
         <thead>
           <tr>
             <th scope="col">Symbol</th>
@@ -60,17 +67,31 @@ const Details = () => {
         </thead>
         <tbody>
           <tr>
-          <td>{symbol}</td>
-          <td>{tickerData?.last_price}</td>
-          <td>{tickerData?.high}</td>
-          <td>{tickerData?.low}</td>
+            <td>{symbol}</td>
+            <td>{ticker?.last_price}</td>
+            <td>{ticker?.high}</td>
+            <td>{ticker?.low}</td>
           </tr>
         </tbody>
       </table>
-    {isLoggedIn && !isFavorite && <Button className={'details__button'} type={"button"} text={"Add to favorites"} onClick={addToFavorites} />}
-    {isLoggedIn && isFavorite && <Button className={'details__button'} type={"button"} text={"Remove from favorites"} onClick={removeFromFavorites} />}
+      {isLoggedIn && !isFavorite && (
+        <Button
+          className={"details__button"}
+          type={"button"}
+          text={"Add to favorites"}
+          onClick={() => addToFavorites(symbol)}
+        />
+      )}
+      {isLoggedIn && isFavorite && (
+        <Button
+          className={"details__button"}
+          type={"button"}
+          text={"Remove from favorites"}
+          onClick={() => removeFromFavorites(symbol)}
+        />
+      )}
     </section>
-  )
-}
+  );
+};
 
-export default Details
+export default Details;

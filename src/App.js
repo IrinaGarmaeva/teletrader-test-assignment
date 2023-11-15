@@ -17,8 +17,8 @@ function App() {
   const location = useLocation()
 
   useEffect(() => {
-    const data = getFromLocalStorage('isLoggedIn')
-    if(data) {
+    const isLoggedIn = getFromLocalStorage('isLoggedIn')
+    if(isLoggedIn) {
       setIsLoggedIn(true);
       navigate(location.pathname)
     } else {

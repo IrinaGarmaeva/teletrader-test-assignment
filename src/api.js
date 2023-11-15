@@ -11,6 +11,7 @@ export const getSymbols = async () => {
     return response.data.slice(0, 5).map((symbol) => symbol.toUpperCase());
   } catch (error) {
     console.error(`Error getting symbols: ${error.message}`)
+    window.alert(`Error getting symbols: ${error.message}`)
   }
 }
 
@@ -27,5 +28,6 @@ export const getTicker = async (symbol) => {
     }
   } catch (error) {
     console.error(`Error getting ${symbol} data: ${error.message}`)
+    window.alert(`Error getting ${symbol} data: ${error.message}`)
   }
 }
