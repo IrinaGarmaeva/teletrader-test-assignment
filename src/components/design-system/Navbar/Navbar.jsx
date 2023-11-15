@@ -1,9 +1,17 @@
 import Button from "../Button/Button";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
+import { saveToLocalStorage } from "../../../common/localSrorageFunctions";
 
-const Navbar = ({ handleLogin, isLoggedIn }) => {
+const Navbar = () => {
   const location = useLocation();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+
+  const handleLogin = () => {
+    setIsLoggedIn(true)
+    saveToLocalStorage('isLoggedIn', true);
+  }
 
   return (
     <nav className="nav">

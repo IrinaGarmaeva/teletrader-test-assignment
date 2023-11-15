@@ -39,6 +39,12 @@ export const tickersSlice = createSlice({
       } else {
         state.favouriteTickers = [...state.favouriteTickers, action.payload]
       }
+    },
+    resetTickers: (state) => {
+      state.tickers = []
+    },
+    resetFavouriteTickers: (state) => {
+      state.favouriteTickers = []
     }
   },
 });
@@ -47,6 +53,6 @@ export const selectTickers = (state) => state.tickers.tickers;
 export const selectFavouriteTickers = (state) => state.tickers.favouriteTickers;
 export const selectTickersErrorText = (state) => state.tickers.errorText;
 export const selectTickersLoadingStatus = (state) => state.tickers.isLoading;
-export const { setTickers, setFavouriteTickers } = tickersSlice.actions
+export const { setTickers, setFavouriteTickers, resetTickers, resetFavouriteTickers } = tickersSlice.actions
 
 export default tickersSlice.reducer

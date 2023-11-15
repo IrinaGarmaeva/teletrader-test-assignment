@@ -3,8 +3,7 @@ import { useLocation } from "react-router-dom";
 import {  useDispatch } from "react-redux";
 import WebSocket from "websocket"
 
-const useWebSocket = ({ tickers, cryptoPairNames, getCryptoPairNames, setTickers}) => {
-  const [tickersToDisplay, setTickersToDisplay] = useState([]);
+const useWebSocket = ({ tickers, symbols, getSymbols, setTickers, resetTickers}) => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -14,21 +13,21 @@ const useWebSocket = ({ tickers, cryptoPairNames, getCryptoPairNames, setTickers
 
     w.onopen = async () => {
       if (location.pathname === "/") {
-        const firstFiveCryptoPairNames = await getCryptoPairNames();
-        firstFiveCryptoPairNames.forEach((cryptoPairName) => {
+        const firstFiveSymbols = await getSymbols();
+        firstFiveSymbols.forEach((symbol) => {
           const payload = JSON.stringify({
             event: "subscribe",
             channel: "ticker",
-            symbol: `t${cryptoPairName}`,
+            symbol: `t${symbol}`,
           });
           w.send(payload);
         });
       } else {
-        cryptoPairNames?.forEach((cryptoPairName) => {
+        symbols?.forEach((symbol) => {
           const payload = JSON.stringify({
             event: "subscribe",
             channel: "ticker",
-            symbol: `t${cryptoPairName}`,
+            symbol: `t${symbol}`,
           });
           w.send(payload);
         });
@@ -64,19 +63,15 @@ const useWebSocket = ({ tickers, cryptoPairNames, getCryptoPairNames, setTickers
 
     w.onclose = () => {
       console.log("WebSocket connection closed");
+      dispatch(resetTickers())
     };
 
     return () => {
-      w.onclose();
+      w.close();
     };
-
   }, []);
 
-  useEffect(() => {
-    setTickersToDisplay(tickers);
-  }, [tickers]);
-
-  return { tickersToDisplay, isLoading };
+  return { isLoading };
 };
 
 export default useWebSocket;

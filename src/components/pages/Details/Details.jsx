@@ -4,12 +4,14 @@ import './Details.css'
 import { useState, useEffect } from 'react'
 import { saveToLocalStorage, getFromLocalStorage } from '../../../common/localSrorageFunctions'
 import Button from '../../design-system/Button/Button'
+import { useAuth } from '../../../context/AuthContext'
 
-const Details = ({isLoggedIn}) => {
+const Details = () => {
   const [tickerData, setTickerData] = useState();
   const [favoriteList, setFavoriteList] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
 
+  const { isLoggedIn } = useAuth();
   const { symbol } = useParams()
 
   const handleGetTicker = async () => {

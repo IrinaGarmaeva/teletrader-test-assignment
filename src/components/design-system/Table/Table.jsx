@@ -34,14 +34,14 @@ const Table = ({tickers}) => {
         </thead>
         <tbody className="table__body">
           {tickersValuesToDisplay.map((ticker) => {
-            const cryptoPairName = ticker.pair;
+            const symbol = ticker.pair;
             return (
               <tr key={ticker.chanId}>
                 <td
-                  onClick={() => navigate(`/details/${cryptoPairName}`)}
+                  onClick={() => navigate(`/details/${symbol}`)}
                   className="table__item"
                 >
-                  {cryptoPairName}
+                  {symbol}
                 </td>
                 {ticker.values.map((value, i) => (
                   <td key={i}>{value}</td>

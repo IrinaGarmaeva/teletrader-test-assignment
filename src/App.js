@@ -1,41 +1,40 @@
-import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+
+import { useAuth } from "./context/AuthContext";
 import Header from './components/layout/Header/Header'
 import { ProtectedRoute } from "./components/layout/ProtectedRoute/ProtectedRoute";
 import Home from "./components/pages/Home/Home";
 import Details from "./components/pages/Details/Details";
 import Favourites from "./components/pages/Favourites/Favourites";
-import NotFound from "./components/pages/NotFound/NotFound";
 import Footer from "./components/layout/Footer/Footer";
-import { saveToLocalStorage, getFromLocalStorage } from "./common/localSrorageFunctions";
+
+import {getFromLocalStorage } from "./common/localSrorageFunctions";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+  const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
     const data = getFromLocalStorage('isLoggedIn')
     if(data) {
       setIsLoggedIn(true);
+      navigate(location.pathname)
     } else {
       setIsLoggedIn(false)
     }
   }, [])
 
-  const handleLogin = () => {
-    setIsLoggedIn(true)
-    saveToLocalStorage('isLoggedIn', true);
-  }
-
   return (
     <div className="root gradient__bg">
       <div className="page">
-        <Header handleLogin={handleLogin} isLoggedIn={isLoggedIn}/>
+        <Header />
         <main className="main">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/details/:symbol" element={<Details isLoggedIn={isLoggedIn}/>} />
+            <Route path="/details/:symbol" element={<Details />} />
             <Route path="/favorites" element={<ProtectedRoute element={<Favourites />} isLoggedIn={isLoggedIn}/>} />
-            {/* <Route path="/*" element={<NotFound />} /> */}
           </Routes>
         </main>
         <Footer />

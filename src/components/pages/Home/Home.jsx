@@ -2,21 +2,22 @@ import { useSelector } from "react-redux"
 import {
   selectTickers,
   setTickers,
+  resetTickers
 } from "../../../store/tickers/tickersSlice"
-import { getCryptoPairNames } from "../../../api"
+import { getSymbols } from "../../../api"
 import Table from "../../design-system/Table/Table"
 import Preloader from "../../design-system/Preloader/Preloader"
-import useWebSocket from "../../../hooks/useWebSocket"
+import useWebSocket from "../../../common/hooks/useWebSocket"
 import "./Home.css"
 
 const Home = () => {
   const tickers = useSelector(selectTickers);
-  const { tickersToDisplay, isLoading } = useWebSocket({tickers, getCryptoPairNames, setTickers});
+  const { isLoading } = useWebSocket({tickers, getSymbols, setTickers, resetTickers});
 
   return (
     <section className="home">
       <div className="home__wrapper">
-        {isLoading ? <Preloader /> : <Table tickers={tickersToDisplay}/>}
+        {isLoading ? <Preloader /> : <Table tickers={tickers}/>}
       </div>
     </section>
   );

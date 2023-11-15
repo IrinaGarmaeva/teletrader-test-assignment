@@ -1,4 +1,3 @@
-
 .table {
   width: 85%;
   table-layout: fixed;
@@ -19,7 +18,6 @@ th, td {
 
 th {
   font-weight: 600;
-
 }
 
 .table__item {

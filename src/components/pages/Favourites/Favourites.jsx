@@ -3,24 +3,25 @@ import { useSelector } from "react-redux";
 import {
   selectFavouriteTickers,
   setFavouriteTickers,
+  resetFavouriteTickers
 } from "../../../store/tickers/tickersSlice";
 import { getFromLocalStorage } from "../../../common/localSrorageFunctions";
 import Preloader from "../../design-system/Preloader/Preloader";
 import Table from "../../design-system/Table/Table";
 import "./Favourites.css";
-import useWebSocket from "../../../hooks/useWebSocket";
+import useWebSocket from "../../../common/hooks/useWebSocket";
 import Button from "../../design-system/Button/Button";
 
 const Favourites = () => {
   const navigate = useNavigate();
   const favouriteTickers = useSelector(selectFavouriteTickers);
-
   const favoriteListFromLocalStorage = getFromLocalStorage("favouriteSymbols");
 
-  const { tickersToDisplay, isLoading } = useWebSocket({
+  const { isLoading } = useWebSocket({
     tickers: favouriteTickers,
-    cryptoPairNames: favoriteListFromLocalStorage,
+    symbols: favoriteListFromLocalStorage,
     setTickers: setFavouriteTickers,
+    resetTickers: resetFavouriteTickers,
   });
   const hasNoFavoriteSymbols = !favoriteListFromLocalStorage || !favoriteListFromLocalStorage.length;
 
@@ -36,7 +37,7 @@ const Favourites = () => {
       ) : isLoading ? (
         <Preloader />
       ) : (
-        <Table tickers={tickersToDisplay} />
+        <Table tickers={favouriteTickers} />
       )}
     </section>
   );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/emailValidationConstants";
+import { COMPANY_URL, AUTHOR_GITHUB_LINK } from "../../../common/consts";
 import ArrowRightIcon from "../../../assets/icons/arrow.svg";
 import "./Footer.css";
 
@@ -30,7 +31,7 @@ const Footer = () => {
         <ul className="footer__list">
           <li className="footer__list-item">
             <a
-              href="https://www.teletrader.rs/"
+              href="COMPANY_URL"
               target="_blank"
               rel="noopener noreferrer"
               className="footer__logo"
@@ -82,7 +83,7 @@ const Footer = () => {
         <ul className="footer__links">
           <li className="footer__link link">
             <a
-              href="https://www.teletrader.rs/"
+              href={COMPANY_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -91,7 +92,7 @@ const Footer = () => {
           </li>
           <li className="footer__link link">
             <a
-              href="https://www.teletrader.rs/"
+              href={COMPANY_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -100,7 +101,7 @@ const Footer = () => {
           </li>
           <li className="footer__link link">
             <a
-              href="https://www.teletrader.rs/"
+              href={COMPANY_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -109,7 +110,7 @@ const Footer = () => {
           </li>
           <li className="footer__link link">
             <a
-              href="https://github.com/IrinaGarmaeva"
+              href={COMPANY_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -118,7 +119,7 @@ const Footer = () => {
           </li>
           <li className="footer__link link">
             <a
-              href="https://www.teletrader.rs/"
+              href={COMPANY_URL}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -127,7 +128,7 @@ const Footer = () => {
           </li>
         </ul>
         <a
-          href="https://github.com/IrinaGarmaeva"
+          href={AUTHOR_GITHUB_LINK}
           className="footer__author"
           target="_blank"
           rel="noopener noreferrer"
