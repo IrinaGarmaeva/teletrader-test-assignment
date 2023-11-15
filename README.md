@@ -20,16 +20,16 @@ Deploy: [https://teletrader-test-assignment-5pleferg9-irinagarmaeva.vercel.app/]
 
 ## About The Project
 **Home Page**
-<img src="./src/assets/images/homePage.jpg">
+<img src="./src/assets/images/projectScreens/homePage.jpg">
 <details><summary><b>Show all</b></summary>
 <b>Details Page for authorized users</b>
-<img src="./src/assets/images/detailsPageForLoggedUser.jpg">
+<img src="./src/assets/images/projectScreens/detailsPageForLoggedUser.jpg">
 <b>Details Page for unauthorized users</b>
-<img src="./src/assets/images/detailsPageForUnauthorizedUsers.jpg">
+<img src="./src/assets/images/projectScreens/detailsPageForUnauthorizedUsers.jpg">
 <b>Favourites Page</b>
-<img src="./src/assets/images/favouritesPage.jpg">
+<img src="./src/assets/images/projectScreens/favouritesPage.jpg">
 <p><b>Live email validation</b></p>
-<img src="./src/assets/images/emailValidation.jpg" width="700" height="400">
+<img src="./src/assets/images/projectScreens/emailValidation.jpg" width="700" height="400">
 
 </details>
 

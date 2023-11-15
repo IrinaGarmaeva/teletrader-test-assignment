@@ -9,7 +9,7 @@ import { getFromLocalStorage } from "../../../common/localSrorageFunctions";
 import Preloader from "../../design-system/Preloader/Preloader";
 import Table from "../../design-system/Table/Table";
 import "./Favourites.css";
-import useWebSocket from "../../../common/hooks/useWebSocket";
+import useWebSocket from "../../../hooks/useWebSocket";
 import Button from "../../design-system/Button/Button";
 
 const Favourites = () => {

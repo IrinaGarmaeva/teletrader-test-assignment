@@ -7,7 +7,7 @@ import {
 import { getSymbols } from "../../../api"
 import Table from "../../design-system/Table/Table"
 import Preloader from "../../design-system/Preloader/Preloader"
-import useWebSocket from "../../../common/hooks/useWebSocket"
+import useWebSocket from "../../../hooks/useWebSocket"
 import "./Home.css"
 
 const Home = () => {
