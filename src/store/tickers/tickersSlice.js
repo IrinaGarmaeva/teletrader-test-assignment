@@ -3,8 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     tickers: [],
     favouriteTickers: [],
-    isLoading: false,
-    errorText: null,
 }
 
 export const tickersSlice = createSlice({
@@ -51,8 +49,6 @@ export const tickersSlice = createSlice({
 
 export const selectTickers = (state) => state.tickers.tickers;
 export const selectFavouriteTickers = (state) => state.tickers.favouriteTickers;
-export const selectTickersErrorText = (state) => state.tickers.errorText;
-export const selectTickersLoadingStatus = (state) => state.tickers.isLoading;
 export const { setTickers, setFavouriteTickers, resetTickers, resetFavouriteTickers } = tickersSlice.actions
 
 export default tickersSlice.reducer
