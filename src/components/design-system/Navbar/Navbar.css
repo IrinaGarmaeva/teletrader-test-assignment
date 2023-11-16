@@ -8,7 +8,8 @@
 }
 
 .nav__link_active {
-  border-bottom: 1px solid var(--color-purple);
+  color: var(--color-purple);
+  font-weight: 600;
 }
 
 .navbar__button {
@@ -16,7 +17,12 @@
   border-radius: 10px;
   color: var(--color-white);
   font-weight: 500;
-  border: 1px solid var(--gradient-light, rgba(255, 255, 255, 0.47));
-  background: var(--gradient-main, linear-gradient(225deg, #18C8FF 14.89%, #933FFE 85.85%));
+  border: 1px solid var(--color-purple);
+  background: transparent;
+  transition: 0.7s ease;
   padding: 6px 15px;
+}
+
+.navbar__button:hover {
+  transform: scale(1.05);
 }

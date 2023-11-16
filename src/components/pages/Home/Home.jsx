@@ -12,7 +12,7 @@ import "./Home.css"
 
 const Home = () => {
   const tickers = useSelector(selectTickers);
-  const { isLoading } = useWebSocket({tickers, getSymbols, setTickers, resetTickers});
+  const { isLoading } = useWebSocket({ getSymbols, setTickers, resetTickers});
 
   return (
     <section className="home">

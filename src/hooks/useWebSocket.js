@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import {  useDispatch } from "react-redux";
-import WebSocket from "websocket"
+import WebSocket from "websocket";
+import { WEBSOCKET_URL } from "../common/consts";
 
-const useWebSocket = ({ tickers, symbols, getSymbols, setTickers, resetTickers}) => {
+const useWebSocket = ({ symbols, getSymbols, setTickers, resetTickers }) => {
   const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   const location = useLocation();
 
   useEffect(() => {
-    const w = new WebSocket.w3cwebsocket("wss://api-pub.bitfinex.com/ws/2");
+    const w = new WebSocket.w3cwebsocket(WEBSOCKET_URL);
 
     w.onopen = async () => {
       if (location.pathname === "/") {

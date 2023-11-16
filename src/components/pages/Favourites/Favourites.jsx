@@ -18,7 +18,6 @@ const Favourites = () => {
   const favoriteListFromLocalStorage = getFromLocalStorage("favouriteSymbols");
 
   const { isLoading } = useWebSocket({
-    tickers: favouriteTickers,
     symbols: favoriteListFromLocalStorage,
     setTickers: setFavouriteTickers,
     resetTickers: resetFavouriteTickers,
