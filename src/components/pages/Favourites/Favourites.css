@@ -5,7 +5,6 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-  overflow: auto;
 }
 
 .favourites__title {
@@ -31,7 +30,11 @@
 .favourites__button-back:hover {
   transform: scale(1.1);
 }
-
+@media(max-width: 850px) {
+  .favorites {
+    overflow: auto;
+  }
+}
 @media (max-width: 650px) {
   .favourites__title{
     font-size: 17px;

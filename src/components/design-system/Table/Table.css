@@ -2,7 +2,6 @@
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
-  overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
   margin-bottom: 20px;
@@ -42,9 +41,7 @@ th {
     vertical-align: top;
     width: 100%;
     max-width: 100%;
-    /* overflow-x: auto;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch; */
+    overflow-x: auto;
   }
 
   th,

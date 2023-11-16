@@ -9,11 +9,15 @@
 .home__wrapper {
   margin: 50px 0;
   display: flex;
-  /* justify-content: center; */
   flex-wrap: nowrap;
   align-items: center;
-  overflow: auto;
   position: relative;
   box-sizing: border-box;
   max-width: 100%;
+}
+
+@media (max-width: 850px) {
+  .home__wrapper {
+    overflow: auto;
+  }
 }
