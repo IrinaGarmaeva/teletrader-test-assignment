@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {toast} from 'react-toastify'
 import { PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/emailValidationConstants";
 import { COMPANY_URL, AUTHOR_GITHUB_LINK } from "../../../common/consts";
 import ArrowRightIcon from "../../../assets/icons/arrow.svg";
@@ -22,7 +23,7 @@ const Footer = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setEmail("");
-    window.alert(VALIDATION__MESSAGES.validEmail);
+    toast.success(VALIDATION__MESSAGES.validEmail, {position: toast.POSITION.BOTTOM_LEFT})
   };
 
   return (

@@ -1,6 +1,8 @@
 import axios from "axios";
+import { toast } from "react-toastify";
+import { SERVER_ERROR_MESSAGE } from "./common/consts";
 
-export const getSymbols = async () => {
+export const getFirstFiveSymbols = async () => {
   try {
     const response = await axios.get('/symbols', {
       headers: {
@@ -10,8 +12,7 @@ export const getSymbols = async () => {
     });
     return response.data.slice(0, 5).map((symbol) => symbol.toUpperCase());
   } catch (error) {
-    console.error(`Error getting symbols: ${error.message}`)
-    window.alert(`Error getting symbols: ${error.message}`)
+    error.code === "ERR_BAD_RESPONSE" ? toast.error(SERVER_ERROR_MESSAGE) : toast.error(error.message)
   }
 }
 
@@ -27,7 +28,6 @@ export const getTicker = async (symbol) => {
       return response
     }
   } catch (error) {
-    console.error(`Error getting ${symbol} data: ${error.message}`)
-    window.alert(`Error getting ${symbol} data: ${error.message}`)
+    error.code === "ERR_BAD_RESPONSE" ? toast.error(SERVER_ERROR_MESSAGE) : toast.error(error.message)
   }
 }

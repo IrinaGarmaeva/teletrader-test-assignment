@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useAuth } from "./context/AuthContext";
 import Header from './components/layout/Header/Header'
@@ -39,6 +41,7 @@ function App() {
         </main>
         <Footer />
       </div>
+      <ToastContainer />
     </div>
   );
 }

@@ -13,27 +13,29 @@ This is a SPA built with React, Redux and [Bitfinex API](https://docs.bitfinex.c
 * Redux Toolkit
 * WebSockets
 * Webpack
+* Toastify
 * HTML, BEM, CSS, Flexbox
 
 ## About The Project
-<b>Home Page</b>
-<img src="./src/assets/images/projectScreens/homePage.jpg">
+<b>Home Page for unauthorized users</b>
+<img src="./src/assets/images/projectScreens/homePageForUnauthorizedUser.jpg">
 <details><summary><b>Show all</b></summary>
 <b>Details Page for authorized users</b>
-<img src="./src/assets/images/projectScreens/detailsPageForLoggedUser.jpg">
+<img src="./src/assets/images/projectScreens/detailsPageForAuthorizedUser.jpg">
 <b>Details Page for unauthorized users</b>
-<img src="./src/assets/images/projectScreens/detailsPageForUnauthorizedUsers.jpg">
+<img src="./src/assets/images/projectScreens/detailsPageForUnauthorizedUser.jpg">
 <b>Favourites Page</b>
 <img src="./src/assets/images/projectScreens/favouritesPage.jpg">
 <p><b>Live email validation</b></p>
 <img src="./src/assets/images/projectScreens/emailValidation.jpg" width="700" height="400">
-
+<p><b>Subscribe notification</b></p>
+<img src="./src/assets/images/projectScreens/notification.jpg">
 </details>
 
 ## Functionality
 
 ### Login Simulation
-Login functionality is simulated. After clicking the login button users are logged in forever and state should be persisted upon app close. There’s no logout functionality. The state of logged-in status is stored via local storage and react context.
+Login functionality is simulated. After clicking the login button users are logged in forever and state should be persisted upon app close. There’s no logout functionality. The state of logged-in status is stored via local storage and react context. User get notification about successfull logging in
 
 
 ### Home Page (`/`)
@@ -62,7 +64,7 @@ This data doesn't update in real-time.
 Logged-in users can manage their favorite cryptocurrency pairs by adding or removing pairs from their list. The state of favorite pairs is stored in Redux store, symbols (crypto pair names) are stored in local storage. This data should be persisted upon app close. This page also receives real-time updates via WebSocket connection.
 
 ### Subscribe Form
-A subscribe form is available in the footer where users can input their email address to subscribe for news updates. Live validation of the email is implemented, and upon form submission, users receive a notification using window.alert().
+A subscribe form is available in the footer where users can input their email address to subscribe for news updates. Live validation of the email is implemented, and upon form submission, users receive a notification.
 
 ### Additional Notes
 **Context and Custom Hooks**: Utilized AuthContext and useWebSocket custom hook to manage user authentication and WebSocket connections for real-time data updates. The useWebSocket hook is extensively used in the Home and Favourites components to subscribe to WebSocket data and manage the state accordingly.

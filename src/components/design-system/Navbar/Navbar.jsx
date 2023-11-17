@@ -1,8 +1,10 @@
 import Button from "../Button/Button";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../../../context/AuthContext";
 import { saveToLocalStorage } from "../../../common/localSrorageFunctions";
+import { SUCCESS_LOGIN_MESSAGE } from "../../../common/consts";
 
 const Navbar = () => {
   const location = useLocation();
@@ -11,6 +13,7 @@ const Navbar = () => {
   const handleLogin = () => {
     setIsLoggedIn(true)
     saveToLocalStorage('isLoggedIn', true);
+    toast.success(SUCCESS_LOGIN_MESSAGE)
   }
 
   return (
