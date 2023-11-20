@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useAuth } from "./context/AuthContext";
@@ -10,8 +10,7 @@ import Home from "./components/pages/Home/Home";
 import Details from "./components/pages/Details/Details";
 import Favourites from "./components/pages/Favourites/Favourites";
 import Footer from "./components/layout/Footer/Footer";
-
-import {getFromLocalStorage } from "./common/localSrorageFunctions";
+import { LocalStorage } from "./common/localStorage";
 
 function App() {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
@@ -19,7 +18,7 @@ function App() {
   const location = useLocation()
 
   useEffect(() => {
-    const isLoggedIn = getFromLocalStorage('isLoggedIn')
+    const isLoggedIn = LocalStorage.getFromLocalStorage('isLoggedIn')
     if(isLoggedIn) {
       setIsLoggedIn(true);
       navigate(location.pathname)

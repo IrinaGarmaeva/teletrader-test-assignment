@@ -2,10 +2,7 @@ import { useParams } from "react-router-dom";
 import { getTicker } from "../../../api";
 import "./Details.css";
 import { useState, useEffect } from "react";
-import {
-  saveToLocalStorage,
-  getFromLocalStorage,
-} from "../../../common/localSrorageFunctions";
+import { LocalStorage } from "../../../common/localStorage";
 import Button from "../../design-system/Button/Button";
 import { useAuth } from "../../../context/AuthContext";
 
@@ -25,9 +22,8 @@ const Details = () => {
   const addToFavorites = (symbol) => {
     setIsFavorite(true);
     const newFavoriteList = [...favoriteList, symbol];
-    saveToLocalStorage("favouriteSymbols", newFavoriteList);
-    const favouriteSymbolsFromLocalStorage =
-      getFromLocalStorage("favouriteSymbols");
+    LocalStorage.saveToLocalStorage("favouriteSymbols", newFavoriteList);
+    const favouriteSymbolsFromLocalStorage = LocalStorage.getFromLocalStorage("favouriteSymbols");
     setFavoriteList(favouriteSymbolsFromLocalStorage);
   };
 
@@ -35,7 +31,7 @@ const Details = () => {
     setIsFavorite(false);
 
     if (favoriteList.length) {
-      saveToLocalStorage(
+      LocalStorage.saveToLocalStorage(
         "favouriteSymbols",
         favoriteList.filter((el) => el !== symbol)
       );
@@ -44,8 +40,7 @@ const Details = () => {
   };
 
   useEffect(() => {
-    const favoriteListFromLocalStorage =
-      getFromLocalStorage("favouriteSymbols");
+    const favoriteListFromLocalStorage =  LocalStorage.getFromLocalStorage("favouriteSymbols");
     if (favoriteListFromLocalStorage?.includes(symbol)) {
       setIsFavorite(true);
     }

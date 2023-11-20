@@ -5,7 +5,7 @@ import {
   setFavouriteTickers,
   resetFavouriteTickers
 } from "../../../store/tickers/tickersSlice";
-import { getFromLocalStorage } from "../../../common/localSrorageFunctions";
+import { LocalStorage } from "../../../common/localStorage";
 import Preloader from "../../design-system/Preloader/Preloader";
 import Table from "../../design-system/Table/Table";
 import "./Favourites.css";
@@ -15,7 +15,7 @@ import Button from "../../design-system/Button/Button";
 const Favourites = () => {
   const navigate = useNavigate();
   const favouriteTickers = useSelector(selectFavouriteTickers);
-  const favoriteListFromLocalStorage = getFromLocalStorage("favouriteSymbols");
+  const favoriteListFromLocalStorage = LocalStorage.getFromLocalStorage("favouriteSymbols");
 
   const { isLoading } = useWebSocket({
     symbols: favoriteListFromLocalStorage,
