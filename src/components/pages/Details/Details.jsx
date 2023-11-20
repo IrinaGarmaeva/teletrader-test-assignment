@@ -18,8 +18,7 @@ const Details = () => {
   const { symbol } = useParams();
 
   const handleGetTicker = async () => {
-    const response = await getTicker(symbol);
-    const ticker = response.data;
+    const ticker = await getTicker(symbol);
     setTicker(ticker);
   };
 

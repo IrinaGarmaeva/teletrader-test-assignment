@@ -13,7 +13,6 @@ This is a SPA built with React, Redux and [Bitfinex API](https://docs.bitfinex.c
 * Redux Toolkit
 * WebSockets
 * Webpack
-* Toastify
 * HTML, BEM, CSS, Flexbox
 
 ## About The Project
