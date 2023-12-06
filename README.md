@@ -3,9 +3,17 @@
 Crypto Currency Monitoring App is a SPA test assignment project. The purpose of this test is to help TeleTrader ascertain the qualiﬁcation and skill level of the prospective candidate applying for the Junior React Developer position.
 The project itself is related to TeleTrader's core business, which revolves around developing applications for the financial industry.
 
+## Table of Contents
+- [Description](#description)
+- [Technologies](#technologies)
+- [Screenshots](#screenshots)
+- [Functionality](#functionality)
+- [Installation](#installation)
+
+
 ## Description
 
-This is a SPA built with React, Redux and [Bitfinex API](https://docs.bitfinex.com/docs). The application allows users to monitor the latest data for the top 5 cryptocurrencies. It provides real-time updates for cryptocurrency pairs from Bitfnex using WebSockets. Users can also view detailed information for individual currency pairs, add or remove pairs to/from their favorites list, and access a dedicated "Favorites" page that displays their selected pairs.
+This is a SPA built with React, Redux and <a href="https://docs.bitfinex.com/docs" target="_blank">Bitfinex API</a>. The application allows users to monitor the latest data for the top 5 cryptocurrencies. It provides real-time updates for cryptocurrency pairs from Bitfnex using WebSockets. Users can also view detailed information for individual currency pairs, add or remove pairs to/from their favorites list, and access a dedicated "Favorites" page that displays their selected pairs.
 
 ## Technologies
 
@@ -15,7 +23,7 @@ This is a SPA built with React, Redux and [Bitfinex API](https://docs.bitfinex.c
 * Webpack
 * HTML, BEM, CSS, Flexbox
 
-## About The Project
+## Screenshots
 <b>Home Page for unauthorized users</b>
 <img src="./src/assets/images/projectScreens/homePageForUnauthorizedUser.jpg">
 <details><summary><b>Show all</b></summary>
@@ -70,11 +78,11 @@ A subscribe form is available in the footer where users can input their email ad
 
 **Redux Implementation**: Implemented global state management using Redux Toolkit. The app utilizes Redux slices (tickersSlice) to manage cryptocurrency data across components. Sslice contains logic for managing changes in the state based on various actions triggered by WebSocket updates and user interactions.
 
-**Proxy Server**: Implemented a proxy server to circumvent CORS issues when fetching data from [Bitfinex API](https://docs.bitfinex.com/docs).
+**Proxy Server**: Implemented a proxy server to circumvent CORS issues when fetching data from <a href="https://docs.bitfinex.com/docs" target="_blank">Bitfinex API</a>.
 
 
 
-## How to install and run locally
+## Installation
 
 Clone repository:
 

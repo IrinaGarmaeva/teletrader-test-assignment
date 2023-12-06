@@ -63,7 +63,6 @@ const useWebSocket = ({ symbols, getSymbols, setTickers, resetTickers }) => {
     };
 
     w.onclose = () => {
-      console.log("WebSocket connection closed");
       dispatch(resetTickers())
     };
 
