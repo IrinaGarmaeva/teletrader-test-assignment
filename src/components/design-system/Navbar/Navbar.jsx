@@ -2,7 +2,7 @@ import Button from "../Button/Button";
 import "./Navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext.tsx";
 import {LocalStorage} from "../../../common/localStorage"
 import { SUCCESS_LOGIN_MESSAGE } from "../../../common/consts";
 

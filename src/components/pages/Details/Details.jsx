@@ -4,7 +4,7 @@ import "./Details.css";
 import { useState, useEffect } from "react";
 import { LocalStorage } from "../../../common/localStorage";
 import Button from "../../design-system/Button/Button";
-import { useAuth } from "../../../context/AuthContext";
+import { useAuth } from "../../../context/AuthContext.tsx";
 
 const Details = () => {
   const [ticker, setTicker] = useState();
