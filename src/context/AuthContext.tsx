@@ -1,12 +1,12 @@
-import React, { createContext, useState, useContext, ReactNode, Dispatch, useMemo } from 'react';
+import React, { createContext, useState, useContext, ReactNode, useMemo } from 'react';
 
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-interface AuthContextProps {
+export interface AuthContextProps {
   isLoggedIn: boolean;
-  setIsLoggedIn: Dispatch<React.SetStateAction<boolean>>;
+  setIsLoggedIn: Function
 }
 
 const AuthContext = createContext<AuthContextProps>({

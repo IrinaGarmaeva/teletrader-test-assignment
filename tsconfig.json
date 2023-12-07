@@ -10,6 +10,12 @@
     "noEmit": true,
     "moduleResolution": "node",
     "strict": true,
+    "types": [
+      "react",
+      "react-dom",
+      "react-router-dom"
+      // ...other options
+    ]
   },
   "include": ["./src/**/*"]
 }

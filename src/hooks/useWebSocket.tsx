@@ -4,8 +4,22 @@ import {  useDispatch } from "react-redux";
 import WebSocket from "websocket";
 import { WEBSOCKET_URL } from "../common/consts";
 
-const useWebSocket = ({ symbols, getSymbols, setTickers, resetTickers }) => {
-  const [isLoading, setIsLoading] = useState(true);
+type Ticker = {
+  chanId: number,
+  symbol: string,
+  pair: string,
+  values: number[],
+}
+
+type UseWebSocketProps = {
+  symbols: string[],
+  getSymbols: () => Promise<string[]>,
+  setTickers: (ticker: Ticker) => void,
+  resetTickers: () => void,
+}
+
+const useWebSocket = ({ symbols, getSymbols, setTickers, resetTickers }: UseWebSocketProps): boolean => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
   const location = useLocation();
 
