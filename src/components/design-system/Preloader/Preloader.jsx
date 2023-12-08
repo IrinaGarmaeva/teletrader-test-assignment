@@ -1,7 +1,7 @@
-import "./Preloader.css";
+import './Preloader.css';
 
-const Preloader = () => {
+function Preloader() {
   return <div className="preloader" />;
-};
+}
 
 export default Preloader;

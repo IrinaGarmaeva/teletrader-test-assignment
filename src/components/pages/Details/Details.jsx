@@ -1,12 +1,12 @@
-import { useParams } from "react-router-dom";
-import { getTicker } from "../../../api";
-import "./Details.css";
-import { useState, useEffect } from "react";
-import { LocalStorage } from "../../../common/localStorage";
-import Button from "../../design-system/Button/Button";
-import { useAuth } from "../../../context/AuthContext.tsx";
+import { useParams } from 'react-router-dom';
+import { getTicker } from '../../../api';
+import './Details.css';
+import { useState, useEffect } from 'react';
+import { LocalStorage } from '../../../common/localStorage';
+import Button from '../../design-system/Button/Button';
+import { useAuth } from '../../../context/AuthContext.tsx';
 
-const Details = () => {
+function Details() {
   const [ticker, setTicker] = useState();
   const [favoriteList, setFavoriteList] = useState([]);
   const [isFavorite, setIsFavorite] = useState(false);
@@ -22,8 +22,8 @@ const Details = () => {
   const addToFavorites = (symbol) => {
     setIsFavorite(true);
     const newFavoriteList = [...favoriteList, symbol];
-    LocalStorage.saveToLocalStorage("favouriteSymbols", newFavoriteList);
-    const favouriteSymbolsFromLocalStorage = LocalStorage.getFromLocalStorage("favouriteSymbols");
+    LocalStorage.saveToLocalStorage('favouriteSymbols', newFavoriteList);
+    const favouriteSymbolsFromLocalStorage = LocalStorage.getFromLocalStorage('favouriteSymbols');
     setFavoriteList(favouriteSymbolsFromLocalStorage);
   };
 
@@ -32,15 +32,15 @@ const Details = () => {
 
     if (favoriteList.length) {
       LocalStorage.saveToLocalStorage(
-        "favouriteSymbols",
-        favoriteList.filter((el) => el !== symbol)
+        'favouriteSymbols',
+        favoriteList.filter((el) => el !== symbol),
       );
       setFavoriteList(favoriteList.filter((el) => el !== symbol));
     }
   };
 
   useEffect(() => {
-    const favoriteListFromLocalStorage =  LocalStorage.getFromLocalStorage("favouriteSymbols");
+    const favoriteListFromLocalStorage = LocalStorage.getFromLocalStorage('favouriteSymbols');
     if (favoriteListFromLocalStorage?.includes(symbol)) {
       setIsFavorite(true);
     }
@@ -70,22 +70,22 @@ const Details = () => {
       </table>
       {isLoggedIn && !isFavorite && (
         <Button
-          className={"details__button"}
-          type={"button"}
-          text={"Add to favorites"}
+          className="details__button"
+          type="button"
+          text="Add to favorites"
           onClick={() => addToFavorites(symbol)}
         />
       )}
       {isLoggedIn && isFavorite && (
         <Button
-          className={"details__button"}
-          type={"button"}
-          text={"Remove from favorites"}
+          className="details__button"
+          type="button"
+          text="Remove from favorites"
           onClick={() => removeFromFavorites(symbol)}
         />
       )}
     </section>
   );
-};
+}
 
 export default Details;

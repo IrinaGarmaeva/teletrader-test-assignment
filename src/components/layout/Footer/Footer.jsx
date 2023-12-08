@@ -1,13 +1,13 @@
-import { useState } from "react";
-import {toast} from 'react-toastify'
-import { PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/emailValidationConstants";
-import { COMPANY_URL, AUTHOR_GITHUB_LINK } from "../../../common/consts";
-import ArrowRightIcon from "../../../assets/icons/arrow.svg";
-import "./Footer.css";
+import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { PATTERN_EMAIL, VALIDATION__MESSAGES } from '../../../common/emailValidationConstants';
+import { COMPANY_URL, AUTHOR_GITHUB_LINK } from '../../../common/consts';
+import ArrowRightIcon from '../../../assets/icons/arrow.svg';
+import './Footer.css';
 
-const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+function Footer() {
+  const [email, setEmail] = useState('');
+  const [error, setError] = useState('');
 
   const currentYear = new Date().getFullYear();
 
@@ -16,14 +16,14 @@ const Footer = () => {
     if (!PATTERN_EMAIL.test(e.target.value)) {
       setError(VALIDATION__MESSAGES.invalidEmail);
     } else {
-      setError("");
+      setError('');
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEmail("");
-    toast.success(VALIDATION__MESSAGES.validEmail, {position: toast.POSITION.BOTTOM_LEFT})
+    setEmail('');
+    toast.success(VALIDATION__MESSAGES.validEmail, { position: toast.POSITION.BOTTOM_LEFT });
   };
 
   return (
@@ -44,7 +44,7 @@ const Footer = () => {
             <p className="footer__slogan">A STEP AHEAD OF MARKET</p>
           </li>
           <li className="footer__list-item">
-            {" "}
+            {' '}
             <p>Be the first to know about crypto news every day</p>
           </li>
           <li className="footer__list-item">
@@ -77,7 +77,11 @@ const Footer = () => {
           <span className="footer__email-error">{error}</span>
         </form>
         <p className="footer__copyright">
-          &copy; {currentYear} Teletrader. All rights reserved
+          &copy;
+          {' '}
+          {currentYear}
+          {' '}
+          Teletrader. All rights reserved
         </p>
       </div>
       <div className="footer__nav">
@@ -139,6 +143,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;

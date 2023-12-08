@@ -1,12 +1,12 @@
-import { BrowserRouter } from "react-router-dom";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
-import { Provider } from "react-redux";
-import { store } from "./store/store";
-import { AuthProvider } from "./context/AuthContext";
+import { BrowserRouter } from 'react-router-dom';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { Provider } from 'react-redux';
+import App from './App';
+import { store } from './store/store';
+import { AuthProvider } from './context/AuthContext';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <Provider store={store}>
@@ -14,5 +14,5 @@ root.render(
         <App />
       </AuthProvider>
     </Provider>
-  </BrowserRouter>
+  </BrowserRouter>,
 );

@@ -1,4 +1,6 @@
-import React, { createContext, useState, useContext, ReactNode, useMemo } from 'react';
+import React, {
+  createContext, useState, useContext, ReactNode, useMemo,
+} from 'react';
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -11,10 +13,10 @@ export interface AuthContextProps {
 
 const AuthContext = createContext<AuthContextProps>({
   isLoggedIn: false,
-  setIsLoggedIn: () => {}
+  setIsLoggedIn: () => {},
 });
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
+export function AuthProvider({ children }: AuthProviderProps) {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const authContextValue = useMemo(() => ({ isLoggedIn, setIsLoggedIn }), [
@@ -27,7 +29,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       {children}
     </AuthContext.Provider>
   );
-};
+}
 
 export const useAuth = (): AuthContextProps => {
   const context = useContext(AuthContext);

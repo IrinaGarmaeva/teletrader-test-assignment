@@ -1,30 +1,30 @@
-import axios from "axios";
+import axios from 'axios';
 
 export const axiosRequest = async ({
   endpoint,
-  method = "get",
+  method = 'get',
   data = null,
 }) => {
   try {
     const config = {
       headers: {
-        accept: "application/json",
+        accept: 'application/json',
       },
       withCredentials: true,
     };
 
     let response;
     switch (method) {
-      case "get":
+      case 'get':
         response = await axios.get(endpoint, config);
         break;
-      case "post":
+      case 'post':
         response = await axios.post(endpoint, data, config);
         break;
-      case "delete":
+      case 'delete':
         response = await axios.delete(endpoint, data, config);
         break;
-      case "put":
+      case 'put':
         response = await axios.put(endpoint, data, config);
         break;
 

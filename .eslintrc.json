@@ -1,0 +1,15 @@
+{
+  "root": true,
+  "plugins": ["@typescript-eslint", "import", "prettier"],
+  "extends": [
+    "airbnb",
+    "react-app",
+    "react-app/jest",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb-typescript"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "parser": "@typescript-eslint/parser"
+}
