@@ -26,6 +26,7 @@ const useWebSocket = ({
   const location = useLocation();
 
   useEffect(() => {
+    // eslint-disable-next-line new-cap
     const w = new WebSocket.w3cwebsocket(WEBSOCKET_URL);
 
     w.onopen = async () => {
@@ -52,7 +53,16 @@ const useWebSocket = ({
     };
 
     w.onmessage = (message) => {
-      const data = JSON.parse(message.data);
+      let initialData : string;
+
+      if (typeof message.data === 'string') {
+        initialData = message.data;
+      } else if (message.data instanceof Buffer) {
+        initialData = message.data.toString('utf-8');
+      } else {
+        throw new Error('Unexpected message data type');
+      }
+      const data = JSON.parse(initialData);
 
       if (data?.event === 'subscribed') {
         dispatch(
