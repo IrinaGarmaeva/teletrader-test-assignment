@@ -6,7 +6,6 @@
     "jsx": "react",
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
-    // "allowImportingTsExtensions": true,
     "noEmit": true,
     "moduleResolution": "node",
     "strict": true,
@@ -14,8 +13,12 @@
       "react",
       "react-dom",
       "react-router-dom"
-      // ...other options
-    ]
+    ],
+    "esModuleInterop": true
   },
-  "include": ["./src/**/*"]
+  "include": [
+    "./src/**/*",
+    "./svg.d.ts"
+  ]
 }
+

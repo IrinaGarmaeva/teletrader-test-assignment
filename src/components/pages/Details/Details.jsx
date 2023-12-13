@@ -1,10 +1,10 @@
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getTicker } from '../../../api';
-import './Details.css';
-import { useState, useEffect } from 'react';
 import { LocalStorage } from '../../../common/localStorage';
 import Button from '../../design-system/Button/Button';
-import { useAuth } from '../../../context/AuthContext.tsx';
+import { useAuth } from '../../../context/AuthContext';
+import './Details.css';
 
 function Details() {
   const [ticker, setTicker] = useState();

@@ -3,24 +3,30 @@ import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import WebSocket from 'websocket';
 import { WEBSOCKET_URL } from '../common/consts';
+import { type TickerItem } from '../store/tickers/tickersSlice';
 
-type Ticker = {
-  chanId: number,
-  symbol: string,
-  pair: string,
-  values: number[],
-};
+export const setTickers = (ticker: TickerItem) => ({
+  type: 'SET_TICKERS',
+  payload: ticker,
+});
+
+export const resetTickers = () => ({
+  type: 'RESET_TICKERS',
+});
+
+type SetTickersAction = ReturnType<typeof setTickers>;
+type ResetTickersAction = ReturnType<typeof resetTickers>;
 
 type UseWebSocketProps = {
   symbols: string[],
   getSymbols: () => Promise<string[]>,
-  setTickers: (ticker: Ticker) => void,
-  resetTickers: () => void,
+  setTickers: (ticker: TickerItem) => SetTickersAction,
+  resetTickers: () => ResetTickersAction
 };
 
 const useWebSocket = ({
   symbols, getSymbols, setTickers, resetTickers,
-}: UseWebSocketProps): boolean => {
+}: UseWebSocketProps): { isLoading: boolean } => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const dispatch = useDispatch();
   const location = useLocation();

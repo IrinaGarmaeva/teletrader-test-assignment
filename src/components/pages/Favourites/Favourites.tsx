@@ -1,7 +1,6 @@
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import {
-  selectFavouriteTickers,
   setFavouriteTickers,
   resetFavouriteTickers,
 } from '../../../store/tickers/tickersSlice';
@@ -11,11 +10,14 @@ import Table from '../../design-system/Table/Table';
 import './Favourites.css';
 import useWebSocket from '../../../hooks/useWebSocket';
 import Button from '../../design-system/Button/Button';
+import { useTickersSelector } from '../../../store/hooks';
 
 function Favourites() {
   const navigate = useNavigate();
-  const favouriteTickers = useSelector(selectFavouriteTickers);
-  const favoriteListFromLocalStorage = LocalStorage.getFromLocalStorage('favouriteSymbols');
+  const favouriteTickers = useTickersSelector(
+    (state) => state.tickers.favouriteTickers,
+  );
+  const favoriteListFromLocalStorage: string[] = LocalStorage.getFromLocalStorage('favouriteSymbols');
 
   const { isLoading } = useWebSocket({
     symbols: favoriteListFromLocalStorage,
@@ -26,14 +28,20 @@ function Favourites() {
 
   return (
     <section className="favorites">
-      {hasNoFavoriteSymbols ? (
+      {hasNoFavoriteSymbols && (
         <>
           <h2 className="favourites__title">
-            You haven't added any symbols to Favourites
+            You have not added any symbols to Favourites
           </h2>
-          <Button className="favourites__button-back" type="button" onClick={() => navigate(-1)} text="Back" />
+          <Button
+            className="favourites__button-back button"
+            type="button"
+            onClick={() => navigate(-1)}
+            text="Back"
+          />
         </>
-      ) : isLoading ? (
+      )}
+      {!hasNoFavoriteSymbols && isLoading ? (
         <Preloader />
       ) : (
         <Table tickers={favouriteTickers} />

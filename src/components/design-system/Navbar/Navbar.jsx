@@ -1,8 +1,9 @@
-import Button from '../Button/Button';
+import React from 'react';
 import './Navbar.css';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useAuth } from '../../../context/AuthContext.tsx';
+import Button from '../Button/Button';
+import { useAuth } from '../../../context/AuthContext';
 import { LocalStorage } from '../../../common/localStorage';
 import { SUCCESS_LOGIN_MESSAGE } from '../../../common/consts';
 
@@ -27,7 +28,7 @@ function Navbar() {
         </Link>
       ) : (
         <Button
-          className="navbar__button"
+          className="navbar__button button"
           type="button"
           text="Login"
           onClick={handleLogin}

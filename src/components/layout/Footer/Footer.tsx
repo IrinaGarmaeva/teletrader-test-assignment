@@ -1,17 +1,16 @@
-import { useState } from 'react';
+import React, { type ChangeEvent, useState, type FormEvent } from 'react';
 import { toast } from 'react-toastify';
 import { PATTERN_EMAIL, VALIDATION__MESSAGES } from '../../../common/emailValidationConstants';
 import { COMPANY_URL, AUTHOR_GITHUB_LINK } from '../../../common/consts';
-import ArrowRightIcon from '../../../assets/icons/arrow.svg';
 import './Footer.css';
 
 function Footer() {
-  const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const currentYear = new Date().getFullYear();
 
-  const handleChangeEmail = (e) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (!PATTERN_EMAIL.test(e.target.value)) {
       setError(VALIDATION__MESSAGES.invalidEmail);
@@ -20,8 +19,12 @@ function Footer() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!email) {
+      setError(VALIDATION__MESSAGES.emptyEmail);
+      return;
+    }
     setEmail('');
     toast.success(VALIDATION__MESSAGES.validEmail, { position: toast.POSITION.BOTTOM_LEFT });
   };
@@ -57,14 +60,8 @@ function Footer() {
         <form
           className="footer__subscribe-form"
           onSubmit={handleSubmit}
-          noValidate
         >
-          <img
-            src={ArrowRightIcon}
-            alt="arrow icon"
-            className="footer__arrow-icon"
-            onClick={handleSubmit}
-          />
+          <button type="submit" className="footer__arrow-icon button">&#x2192;</button>
           <input
             type="email"
             value={email}

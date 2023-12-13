@@ -1,3 +1,4 @@
+import React from 'react';
 import Navbar from '../../design-system/Navbar/Navbar';
 import './Header.css';
 import { COMPANY_URL } from '../../../common/consts';

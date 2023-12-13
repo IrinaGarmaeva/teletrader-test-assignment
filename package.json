@@ -42,6 +42,7 @@
     ]
   },
   "devDependencies": {
+    "@types/webpack-env": "^1.18.4",
     "@types/websocket": "^1.0.10",
     "eslint": "^8.39.0",
     "eslint-config-airbnb": "^19.0.4",

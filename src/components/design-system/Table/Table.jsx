@@ -1,6 +1,6 @@
+import React from 'react';
 import './Table.css';
 import { useNavigate } from 'react-router-dom';
-import { formatTickers } from '../../../common/tickerFormatter';
 
 function Table({ tickers }) {
   const navigate = useNavigate();
@@ -40,8 +40,8 @@ function Table({ tickers }) {
               >
                 {symbol}
               </td>
-              {ticker.values.map((value, i) => (
-                <td key={i}>{value}</td>
+              {ticker.values.map((value) => (
+                <td key={ticker.chanId}>{value}</td>
               ))}
             </tr>
           );
