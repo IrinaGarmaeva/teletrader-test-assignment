@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Button from '../Button/Button';
 import { useAuth } from '../../../context/AuthContext';
-import { LocalStorage } from '../../../common/localStorage';
+import LocalStorage from '../../../common/localStorage';
 import { SUCCESS_LOGIN_MESSAGE } from '../../../common/consts';
 
 function Navbar() {

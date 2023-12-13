@@ -7,12 +7,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useAuth } from './context/AuthContext';
 import Header from './components/layout/Header/Header';
-import { ProtectedRoute } from './components/layout/ProtectedRoute/ProtectedRoute';
+import ProtectedRoute from './components/layout/ProtectedRoute/ProtectedRoute';
 import Home from './components/pages/Home/Home';
 import Details from './components/pages/Details/Details';
 import Favourites from './components/pages/Favourites/Favourites';
 import Footer from './components/layout/Footer/Footer';
-import { LocalStorage } from './common/localStorage';
+import LocalStorage from './common/localStorage';
 
 function App() {
   const { isLoggedIn, setIsLoggedIn } = useAuth();

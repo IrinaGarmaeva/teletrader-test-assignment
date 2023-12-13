@@ -1,6 +1,6 @@
 import React, { type ChangeEvent, useState, type FormEvent } from 'react';
 import { toast } from 'react-toastify';
-import { PATTERN_EMAIL, VALIDATION__MESSAGES } from '../../../common/emailValidationConstants';
+import { PATTERN_EMAIL, VALIDATION_MESSAGES } from '../../../common/emailValidationConstants';
 import { COMPANY_URL, AUTHOR_GITHUB_LINK } from '../../../common/consts';
 import './Footer.css';
 
@@ -13,7 +13,7 @@ function Footer() {
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (!PATTERN_EMAIL.test(e.target.value)) {
-      setError(VALIDATION__MESSAGES.invalidEmail);
+      setError(VALIDATION_MESSAGES.invalidEmail);
     } else {
       setError('');
     }
@@ -22,11 +22,11 @@ function Footer() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!email) {
-      setError(VALIDATION__MESSAGES.emptyEmail);
+      setError(VALIDATION_MESSAGES.emptyEmail);
       return;
     }
     setEmail('');
-    toast.success(VALIDATION__MESSAGES.validEmail, { position: toast.POSITION.BOTTOM_LEFT });
+    toast.success(VALIDATION_MESSAGES.validEmail, { position: toast.POSITION.BOTTOM_LEFT });
   };
 
   return (

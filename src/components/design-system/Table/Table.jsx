@@ -33,7 +33,7 @@ function Table({ tickers }) {
         {tickersValuesToDisplay.map((ticker) => {
           const symbol = ticker.pair;
           return (
-            <tr key={ticker.chanId}>
+            <tr key={ticker.name}>
               <td
                 onClick={() => navigate(`/details/${symbol}`)}
                 className="table__item"

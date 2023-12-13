@@ -8,7 +8,8 @@ interface AuthProviderProps {
 
 export interface AuthContextProps {
   isLoggedIn: boolean;
-  setIsLoggedIn: Function
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>
+  // setIsLoggedIn: () => void; Если указать этот тип, то ошибка в 29 строке value несоответствие типу
 }
 
 const AuthContext = createContext<AuthContextProps>({
