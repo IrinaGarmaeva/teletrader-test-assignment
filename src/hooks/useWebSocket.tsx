@@ -18,8 +18,8 @@ type SetTickersAction = ReturnType<typeof setTickers>;
 type ResetTickersAction = ReturnType<typeof resetTickers>;
 
 type UseWebSocketProps = {
-  symbols: string[],
-  getSymbols: () => Promise<string[]>,
+  symbols?: string[],
+  getSymbols?: () => Promise<string[]>,
   setTickers: (ticker: TickerItem) => SetTickersAction,
   resetTickers: () => ResetTickersAction
 };
@@ -36,7 +36,7 @@ const useWebSocket = ({
     const w = new WebSocket.w3cwebsocket(WEBSOCKET_URL);
 
     w.onopen = async () => {
-      if (location.pathname === '/') {
+      if (getSymbols && location.pathname === '/') {
         const firstFiveSymbols = await getSymbols();
         firstFiveSymbols.forEach((symbol) => {
           const payload = JSON.stringify({
