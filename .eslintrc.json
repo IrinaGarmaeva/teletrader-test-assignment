@@ -14,7 +14,8 @@
     "react/prop-types": "off"
   },
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "parser": "@typescript-eslint/parser"
   },
-  "parser": "@typescript-eslint/parser"
+  "ignorePatterns": ["dist/", "/*.js", "/*.jsx", "proxy-server/"]
 }
