@@ -6,20 +6,37 @@ import Button from '../../design-system/Button/Button';
 import { useAuth } from '../../../context/AuthContext';
 import './Details.css';
 
+type SymbolParams = {
+  symbol: string;
+};
+
+type Ticker = {
+  ask: string,
+  bid: string,
+  high: string,
+  last_price: string,
+  low: string,
+  mid: string,
+  timestamp: string,
+  volume: string
+};
+
 function Details() {
-  const [ticker, setTicker] = useState();
-  const [favoriteList, setFavoriteList] = useState([]);
-  const [isFavorite, setIsFavorite] = useState(false);
+  const [ticker, setTicker] = useState<Ticker>();
+  const [favoriteList, setFavoriteList] = useState<string[]>([]);
+  const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const { isLoggedIn } = useAuth();
-  const { symbol } = useParams();
+  const { symbol } = useParams<SymbolParams>();
 
   const handleGetTicker = async () => {
-    const ticker = await getTicker(symbol);
-    setTicker(ticker);
+    if (symbol) {
+      const ticker: Ticker = await getTicker(symbol);
+      setTicker(ticker);
+    }
   };
 
-  const addToFavorites = (symbol) => {
+  const addToFavorites = (symbol: string) => {
     setIsFavorite(true);
     const newFavoriteList = [...favoriteList, symbol];
     LocalStorage.saveToLocalStorage('favouriteSymbols', newFavoriteList);
@@ -27,7 +44,7 @@ function Details() {
     setFavoriteList(favouriteSymbolsFromLocalStorage);
   };
 
-  const removeFromFavorites = (symbol) => {
+  const removeFromFavorites = (symbol: string) => {
     setIsFavorite(false);
 
     if (favoriteList.length) {
@@ -41,6 +58,7 @@ function Details() {
 
   useEffect(() => {
     const favoriteListFromLocalStorage = LocalStorage.getFromLocalStorage('favouriteSymbols');
+    // const favoriteListFromLocalStorage: string[] | [] | null = LocalStorage.getFromLocalStorage('favouriteSymbols');
     if (favoriteListFromLocalStorage?.includes(symbol)) {
       setIsFavorite(true);
     }
@@ -68,7 +86,7 @@ function Details() {
           </tr>
         </tbody>
       </table>
-      {isLoggedIn && !isFavorite && (
+      {isLoggedIn && !isFavorite && symbol && (
         <Button
           className="details__button"
           type="button"
@@ -76,7 +94,7 @@ function Details() {
           onClick={() => addToFavorites(symbol)}
         />
       )}
-      {isLoggedIn && isFavorite && (
+      {isLoggedIn && isFavorite && symbol && (
         <Button
           className="details__button"
           type="button"
