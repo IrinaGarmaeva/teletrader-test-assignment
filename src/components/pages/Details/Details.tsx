@@ -7,7 +7,7 @@ import { useAuth } from '../../../context/AuthContext';
 import './Details.css';
 
 type SymbolParams = {
-  symbol: string;
+  symbol: string | undefined;
 };
 
 type Ticker = {
@@ -57,11 +57,15 @@ function Details() {
   };
 
   useEffect(() => {
-    const favoriteListFromLocalStorage = LocalStorage.getFromLocalStorage('favouriteSymbols');
-    // const favoriteListFromLocalStorage: string[] | [] | null = LocalStorage.getFromLocalStorage('favouriteSymbols');
-    if (favoriteListFromLocalStorage?.includes(symbol)) {
-      setIsFavorite(true);
+    const favoriteListFromLocalStorage: string[] | null | undefined = LocalStorage.getFromLocalStorage('favouriteSymbols');
+
+    if (symbol) {
+      const isSymbolInFavorites = favoriteListFromLocalStorage?.includes(symbol);
+      if (isSymbolInFavorites) {
+        setIsFavorite(true);
+      }
     }
+
     setFavoriteList(favoriteListFromLocalStorage || []);
     handleGetTicker();
   }, []);
