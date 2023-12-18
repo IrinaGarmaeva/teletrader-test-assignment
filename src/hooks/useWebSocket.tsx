@@ -7,7 +7,12 @@ import { type TickerItem } from '../store/tickers/tickersSlice';
 
 export const setTickers = (ticker: TickerItem) => ({
   type: 'SET_TICKERS',
-  payload: ticker,
+  payload: {
+    chanId: ticker.chanId,
+    symbol: ticker.symbol,
+    pair: ticker.pair,
+    values: ticker.values,
+  } as TickerItem,
 });
 
 export const resetTickers = () => ({

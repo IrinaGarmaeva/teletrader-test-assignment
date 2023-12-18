@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type TickerItem = {
@@ -26,11 +25,10 @@ export const tickersSlice = createSlice({
       state,
       action: PayloadAction<{
         chanId: number;
-        symbol: string | undefined;
-        pair: string;
+        symbol?: string | undefined;
+        pair?: string;
         values: number[];
       }>,
-      // action: PayloadAction<TickerItem>,
     ) => {
       const { payload } = action;
       const tickerIndex = state.tickers.findIndex(
@@ -46,7 +44,7 @@ export const tickersSlice = createSlice({
         state.tickers = [...state.tickers, action.payload];
       }
     },
-    setFavouriteTickers: (state, action) => {
+    setFavouriteTickers: (state, action: PayloadAction<TickerItem>) => {
       const { payload } = action;
       const tickerIndex = state.favouriteTickers.findIndex(
         (ticker) => ticker.chanId === payload.chanId,

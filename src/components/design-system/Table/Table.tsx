@@ -1,12 +1,17 @@
 import React from 'react';
 import './Table.css';
 import { useNavigate } from 'react-router-dom';
+import { TickerItem } from '../../../store/tickers/tickersSlice';
 
-function Table({ tickers }) {
+type TableProps = {
+  tickers: TickerItem[]
+};
+
+function Table({ tickers }: TableProps) {
   const navigate = useNavigate();
 
-  const getTickersValuesToDisplay = (tickers) => {
-    const tickersWithSelectedValues = tickers.map((ticker) => {
+  const getTickersValuesToDisplay = (tickers: TickerItem[]) => {
+    const tickersWithSelectedValues = tickers.map((ticker: TickerItem) => {
       const values = ticker.values.filter((_, index) => [0, 7, 5, 6, 9, 10].includes(index));
       return { ...ticker, values };
     });
@@ -30,10 +35,10 @@ function Table({ tickers }) {
         </tr>
       </thead>
       <tbody className="table__body">
-        {tickersValuesToDisplay.map((ticker) => {
+        {tickersValuesToDisplay.map((ticker: TickerItem) => {
           const symbol = ticker.pair;
           return (
-            <tr key={ticker.name}>
+            <tr key={ticker.chanId}>
               <td
                 onClick={() => navigate(`/details/${symbol}`)}
                 className="table__item"
