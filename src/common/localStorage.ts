@@ -1,14 +1,14 @@
 export default class LocalStorage {
-  static saveToLocalStorage(key: string, data: string[] | boolean) {
+  static setItem(key: string, data: string[] | boolean) {
     localStorage.setItem(key, JSON.stringify(data));
   }
 
-  static getFromLocalStorage(key: string) {
+  static getItem(key: string) {
     const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : null;
   }
 
-  static removeFromLocalStorage(key: string) {
+  static removeItem(key: string) {
     localStorage.removeItem(key);
   }
 

@@ -13,7 +13,7 @@ function Navbar() {
 
   const handleLogin = () => {
     setIsLoggedIn(true);
-    LocalStorage.saveToLocalStorage('isLoggedIn', true);
+    LocalStorage.setItem('isLoggedIn', true);
     toast.success(SUCCESS_LOGIN_MESSAGE);
   };
 

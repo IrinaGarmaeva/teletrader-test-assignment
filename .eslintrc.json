@@ -11,7 +11,7 @@
   "rules": {
     "max-len": "off",
     "@typescript-eslint/no-shadow": "off",
-    "react/prop-types": "off",
+    "react/button-has-type": "off",
     "no-param-reassign": ["error", { "props": false }]
   },
   "parserOptions": {

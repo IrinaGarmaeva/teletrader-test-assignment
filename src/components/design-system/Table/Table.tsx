@@ -1,6 +1,7 @@
 import React from 'react';
 import './Table.css';
 import { useNavigate } from 'react-router-dom';
+import { tableHeaders } from '@common/consts';
 import { TickerItem } from '../../../store/tickers/tickersSlice';
 
 type TableProps = {
@@ -20,18 +21,13 @@ function Table({ tickers }: TableProps) {
 
   const tickersValuesToDisplay = getTickersValuesToDisplay(tickers);
 
-  // const formattedTickersToDisplay = formatTickers(tickersValuesToDisplay);
-
   return (
     <table className="table">
       <thead>
         <tr>
-          <th className="table__item-name" scope="col">Name</th>
-          <th scope="col">Last</th>
-          <th scope="col">Change</th>
-          <th scope="col">Change Percent</th>
-          <th scope="col">High</th>
-          <th scope="col">Low</th>
+          {tableHeaders.map((header) => (
+            <th key={header.title} scope="col" className={header.className}>{header.title}</th>
+          ))}
         </tr>
       </thead>
       <tbody className="table__body">

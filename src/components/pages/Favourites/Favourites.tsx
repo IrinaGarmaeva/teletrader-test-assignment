@@ -17,7 +17,7 @@ function Favourites() {
   const favouriteTickers = useTickersSelector(
     (state) => state.tickers.favouriteTickers,
   );
-  const favoriteListFromLocalStorage: string[] = LocalStorage.getFromLocalStorage('favouriteSymbols');
+  const favoriteListFromLocalStorage: string[] = LocalStorage.getItem('favouriteSymbols');
 
   const { isLoading } = useWebSocket({
     symbols: favoriteListFromLocalStorage,
