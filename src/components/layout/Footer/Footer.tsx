@@ -1,7 +1,7 @@
 import React, { type ChangeEvent, useState, type FormEvent } from 'react';
 import { toast } from 'react-toastify';
-import { PATTERN_EMAIL, VALIDATION_MESSAGES } from '../../../common/emailValidationConstants';
-import { COMPANY_URL, AUTHOR_GITHUB_LINK } from '../../../common/consts';
+import { PATTERN_EMAIL, VALIDATION_MESSAGES } from 'common/emailValidationConstants';
+import { COMPANY_URL, AUTHOR_GITHUB_LINK } from 'common/consts';
 import './Footer.css';
 
 function Footer() {

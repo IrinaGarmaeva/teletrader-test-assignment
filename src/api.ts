@@ -1,6 +1,7 @@
 import { toast } from 'react-toastify';
-import { SERVER_ERROR_MESSAGE } from './common/consts';
-import axiosRequest from './common/axios';
+import { Ticker } from 'common/types';
+import { SERVER_ERROR_MESSAGE } from 'common/consts';
+import axiosRequest from 'common/axios';
 
 type ServerError = Error & { code?: string };
 
@@ -22,7 +23,7 @@ export const getFirstFiveSymbols = async (): Promise<string[]> => {
   }
 };
 
-export const getTicker = async (symbol: string): Promise<any> => {
+export const getTicker = async (symbol: string): Promise<Ticker | null> => {
   try {
     return await axiosRequest({ endpoint: `/pubticker/${symbol}` });
   } catch (error) {

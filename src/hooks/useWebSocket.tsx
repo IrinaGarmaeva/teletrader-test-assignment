@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import WebSocket from 'websocket';
-import { WEBSOCKET_URL } from '../common/consts';
+import { WEBSOCKET_URL } from 'common/consts';
 import { type TickerItem } from '../store/tickers/tickersSlice';
 
 export const setTickers = (ticker: TickerItem) => ({

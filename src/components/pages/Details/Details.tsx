@@ -1,25 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { Ticker } from 'common/types';
+import { useAuth } from 'context/AuthContext';
+import LocalStorage from 'common/localStorage';
 import { getTicker } from '../../../api';
-import LocalStorage from '../../../common/localStorage';
 import Button from '../../design-system/Button/Button';
-import { useAuth } from '../../../context/AuthContext';
 import './Details.css';
-
-type SymbolParams = {
-  symbol?: string;
-};
-
-type Ticker = {
-  ask: string,
-  bid: string,
-  high: string,
-  last_price: string,
-  low: string,
-  mid: string,
-  timestamp: string,
-  volume: string
-};
 
 function Details() {
   const [ticker, setTicker] = useState<Ticker>();
@@ -27,12 +13,16 @@ function Details() {
   const [isFavorite, setIsFavorite] = useState<boolean>(false);
 
   const { isLoggedIn } = useAuth();
-  const { symbol } = useParams<SymbolParams>();
+  const { symbol } = useParams<{ symbol?: string }>();
 
   const handleGetTicker = async () => {
     if (symbol) {
-      const ticker: Ticker = await getTicker(symbol);
-      setTicker(ticker);
+      const ticker: Ticker | null = await getTicker(symbol);
+      if (ticker !== null) {
+        setTicker(ticker);
+      } else {
+        throw new Error('Cant get ticker data');
+      }
     }
   };
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import LocalStorage from 'common/localStorage';
 import {
   setFavouriteTickers,
   resetFavouriteTickers,
 } from '../../../store/tickers/tickersSlice';
-import LocalStorage from '../../../common/localStorage';
 import Preloader from '../../design-system/Preloader/Preloader';
 import Table from '../../design-system/Table/Table';
 import './Favourites.css';

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Table.css';
 import { useNavigate } from 'react-router-dom';
-import { tableHeaders } from '@common/consts';
+import { tableHeaders } from 'common/consts';
 import { TickerItem } from '../../../store/tickers/tickersSlice';
 
 type TableProps = {
