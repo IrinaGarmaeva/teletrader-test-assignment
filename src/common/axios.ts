@@ -6,24 +6,23 @@ type RequestParams = {
   data?: any,
 };
 
+const axiosInstance = axios.create({
+  headers: {
+    accept: 'application/json',
+  },
+  withCredentials: true,
+});
+
 const axiosRequest = async ({
   endpoint,
   method = 'get',
   data = null,
 }: RequestParams) => {
-  const config = {
-    headers: {
-      accept: 'application/json',
-    },
-    withCredentials: true,
-  };
-
   try {
-    const response = await axios.request({
+    const response = await axiosInstance.request({
       url: endpoint,
       method,
       data: method === 'delete' ? data : null,
-      ...config,
     });
 
     return response.data;
