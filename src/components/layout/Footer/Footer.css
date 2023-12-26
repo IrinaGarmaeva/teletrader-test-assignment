@@ -45,10 +45,14 @@
 }
 
 .footer__arrow-icon {
+  background: transparent;
+  padding: 0;
+  border: 0;
   position: absolute;
   right: 12px;
   top: 15px;
   cursor: pointer;
+  color: var(--color-gray);
 }
 
 .footer__email {

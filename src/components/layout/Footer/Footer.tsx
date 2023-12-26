@@ -1,29 +1,32 @@
-import { useState } from "react";
-import {toast} from 'react-toastify'
-import { PATTERN_EMAIL, VALIDATION__MESSAGES } from "../../../common/emailValidationConstants";
-import { COMPANY_URL, AUTHOR_GITHUB_LINK } from "../../../common/consts";
-import ArrowRightIcon from "../../../assets/icons/arrow.svg";
-import "./Footer.css";
+import React, { type ChangeEvent, useState, type FormEvent } from 'react';
+import { toast } from 'react-toastify';
+import { PATTERN_EMAIL, VALIDATION_MESSAGES } from 'common/emailValidationConstants';
+import { COMPANY_URL, AUTHOR_GITHUB_LINK } from 'common/consts';
+import './Footer.css';
 
-const Footer = () => {
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+function Footer() {
+  const [email, setEmail] = useState<string>('');
+  const [error, setError] = useState<string>('');
 
   const currentYear = new Date().getFullYear();
 
-  const handleChangeEmail = (e) => {
+  const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (!PATTERN_EMAIL.test(e.target.value)) {
-      setError(VALIDATION__MESSAGES.invalidEmail);
+      setError(VALIDATION_MESSAGES.invalidEmail);
     } else {
-      setError("");
+      setError('');
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setEmail("");
-    toast.success(VALIDATION__MESSAGES.validEmail, {position: toast.POSITION.BOTTOM_LEFT})
+    if (!email) {
+      setError(VALIDATION_MESSAGES.emptyEmail);
+      return;
+    }
+    setEmail('');
+    toast.success(VALIDATION_MESSAGES.validEmail, { position: toast.POSITION.BOTTOM_LEFT });
   };
 
   return (
@@ -44,7 +47,7 @@ const Footer = () => {
             <p className="footer__slogan">A STEP AHEAD OF MARKET</p>
           </li>
           <li className="footer__list-item">
-            {" "}
+            {' '}
             <p>Be the first to know about crypto news every day</p>
           </li>
           <li className="footer__list-item">
@@ -57,14 +60,8 @@ const Footer = () => {
         <form
           className="footer__subscribe-form"
           onSubmit={handleSubmit}
-          noValidate
         >
-          <img
-            src={ArrowRightIcon}
-            alt="arrow icon"
-            className="footer__arrow-icon"
-            onClick={handleSubmit}
-          />
+          <button type="submit" className="footer__arrow-icon button">&#x2192;</button>
           <input
             type="email"
             value={email}
@@ -77,7 +74,11 @@ const Footer = () => {
           <span className="footer__email-error">{error}</span>
         </form>
         <p className="footer__copyright">
-          &copy; {currentYear} Teletrader. All rights reserved
+          &copy;
+          {' '}
+          {currentYear}
+          {' '}
+          Teletrader. All rights reserved
         </p>
       </div>
       <div className="footer__nav">
@@ -139,6 +140,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+}
 
 export default Footer;
