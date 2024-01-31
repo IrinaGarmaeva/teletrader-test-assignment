@@ -13,10 +13,11 @@ The project itself is related to TeleTrader's core business, which revolves arou
 
 ## Description
 
-This is a SPA built with React, Redux and <a href="https://docs.bitfinex.com/docs" target="_blank">Bitfinex API</a>. The application allows users to monitor the latest data for the top 5 cryptocurrencies. It provides real-time updates for cryptocurrency pairs from Bitfnex using WebSockets. Users can also view detailed information for individual currency pairs, add or remove pairs to/from their favorites list, and access a dedicated "Favorites" page that displays their selected pairs.
+This is a SPA built with TypeScript, React, Redux and <a href="https://docs.bitfinex.com/docs" target="_blank">Bitfinex API</a>. The application allows users to monitor the latest data for the top 5 cryptocurrencies. It provides real-time updates for cryptocurrency pairs from Bitfnex using WebSockets. Users can also view detailed information for individual currency pairs, add or remove pairs to/from their favorites list, and access a dedicated "Favorites" page that displays their selected pairs.
 
 ## Technologies
 
+* TypeScript
 * React JS (Functional components, hooks)
 * Redux Toolkit
 * WebSockets

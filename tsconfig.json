@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "common/*": ["common/*"],
+      "context/*": ["context/*"]
+    },
+    "outDir": "./dist/",
+    "module": "es6",
+    "target": "es5",
+    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "types": [
+      "react",
+      "react-dom",
+      "react-router-dom"
+    ],
+    "esModuleInterop": true
+  },
+  "include": [
+    "./src/**/*",
+    "./proxy-server"
+  ]
+}
+
